@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 
 public class GamePanel extends JPanel implements Runnable{
@@ -14,16 +17,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    Player player = new Player(this,keyH);
 
 
     //FPS
     int FPS =60;
 
     //player position
-
-    int playerX=350;
-    int playerY=500;
-    int playerSpeed=10;
 
     public void startGameThread()
     {
@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable{
     {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
+
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -81,37 +82,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-        if(keyH.leftPressed==true)
-        {
-            if(playerX<10)
-            {
-                playerX=10;
-            }else
-            {
-                playerX-=playerSpeed;
-            }
-
-        }
-        else if(keyH.rightPressed==true)
-        {
-            if(playerX>=700)
-            {
-                playerX=700;
-            }else
-            {
-                playerX+=playerSpeed;
-            }
-
-        }
+       player.update();
 
     }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
-        g2.setColor(Color.white);
-        g2.fillRect(playerX,playerY,tileSize,tileSize);
+        BufferedImage bk;
+        try {
+             bk = ImageIO.read(getClass().getResourceAsStream("/backgroud.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        g2.drawImage(bk,100,100,500,500,null);
+        player.draw(g2);
 
         g2.dispose();
 
