@@ -16,8 +16,11 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenHeight=tileSize*maxScreenRow;
 
     KeyHandler keyH = new KeyHandler();
+    public CollisionChecker cChecker = new CollisionChecker(this);
+
     Thread gameThread;
     Player player = new Player(this,keyH);
+    Ball ball = new Ball(this,player);
 
 
     //FPS
@@ -82,7 +85,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-       player.update();
+        player.update();
+        ball.update();
 
     }
     public void paintComponent(Graphics g)
@@ -91,12 +95,14 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) g;
         BufferedImage bk;
         try {
-             bk = ImageIO.read(getClass().getResourceAsStream("/backgroud.png"));
+            bk = ImageIO.read(getClass().getResourceAsStream("/backgroud.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        g2.drawImage(bk,100,100,500,500,null);
+      //  g2.drawImage(bk,100,100,500,500,null);
         player.draw(g2);
+        ball.draw(g2);
+
 
         g2.dispose();
 

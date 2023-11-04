@@ -10,10 +10,15 @@ public class Player extends Entity{
 
 
 
+
+
     public Player(GamePanel GP,KeyHandler KH)
     {
         this.gp=GP;
         this.keyH= KH;
+
+        solidArea= new Rectangle(350,500,48*3,48);
+
         setDefaultValues();
         getPlayerImage();
     }
@@ -32,41 +37,52 @@ public class Player extends Entity{
 
     public void setDefaultValues()
     {
-         x=350;
-         y=500;
-         speed=10;
+        x=350;
+        y=500;
+        speed=10;
     }
 
     public void update()
     {
         if(keyH.leftPressed==true)
         {
-            if(x<10)
+            if(x<12)
             {
-                x=10;
+
+                x=12;
+                solidArea.x=12;
             }else
             {
+
                 x-=speed;
+                solidArea.x-=speed;
             }
 
         }
         else if(keyH.rightPressed==true)
         {
-            if(x>=700)
+            if(x>700)
             {
+
                 x=700;
+                solidArea.x=700;
             }else
             {
+
                 x+=speed;
+                solidArea.x+=speed;
             }
 
         }
+
+
     }
     public void draw(Graphics2D g2)
     {
-       // g2.setColor(Color.white);
-       // g2.fillRect(x,y,gp.tileSize,gp.tileSize);
+        // g2.setColor(Color.white);
+        // g2.fillRect(x,y,gp.tileSize,gp.tileSize);
 
+        g2.draw(solidArea);
         g2.drawImage(skin,x,y,gp.tileSize*3,gp.tileSize,null);
     }
 }

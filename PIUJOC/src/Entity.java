@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
@@ -7,5 +8,6 @@ public class Entity {
 
     public BufferedImage skin;
 
+    public Rectangle solidArea;
 
 }
