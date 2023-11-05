@@ -38,27 +38,28 @@ public class Ball extends Entity{
     public void update()
     {
         if(solidArea.intersects(p.solidArea)){
-            dirY = -dirY;
-            dirX+=dirX;
+            dirY=-dirY;
+
         }
-        solidArea.x+=dirY;
+
+        solidArea.x+=dirX;
         solidArea.y+=dirY;
-        x+=dirY;
+        x+=dirX;
         y+=dirY;
 
         if(x < 0)
         {
-            solidArea.x=-dirX;
-            x= - dirX;
+           // solidArea.x=-dirX;
+            dirX= - dirX;
         }
         if(y < 0)
         {
-            solidArea.y=-dirY;
+            //solidArea.y=-dirY;
             dirY= -dirY;
         }
         if(x > 670)
         {
-            solidArea.x=-dirX;
+            //solidArea.x=-dirX;
             dirX= -dirX;
         }
 

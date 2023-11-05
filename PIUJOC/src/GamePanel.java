@@ -99,7 +99,7 @@ public class GamePanel extends JPanel implements Runnable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-      //  g2.drawImage(bk,100,100,500,500,null);
+        g2.drawImage(bk,100,100,500,500,null);
         player.draw(g2);
         ball.draw(g2);
 
