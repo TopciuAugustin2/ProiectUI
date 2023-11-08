@@ -9,15 +9,12 @@ public class Player extends Entity{
     KeyHandler keyH;
 
 
-
-
-
     public Player(GamePanel GP,KeyHandler KH)
     {
         this.gp=GP;
         this.keyH= KH;
 
-        solidArea= new Rectangle(350,500,48*3,48);
+        solidArea= new Rectangle(600,900,48*3,48-20);
 
         setDefaultValues();
         getPlayerImage();
@@ -37,8 +34,8 @@ public class Player extends Entity{
 
     public void setDefaultValues()
     {
-        x=350;
-        y=500;
+        x=600;
+        y=900;
         speed=10;
     }
 
@@ -83,6 +80,6 @@ public class Player extends Entity{
         // g2.fillRect(x,y,gp.tileSize,gp.tileSize);
 
         g2.draw(solidArea);
-        g2.drawImage(skin,x,y,gp.tileSize*3,gp.tileSize,null);
+        g2.drawImage(skin,x,y,gp.tileSize*3,gp.tileSize-20,null);
     }
 }

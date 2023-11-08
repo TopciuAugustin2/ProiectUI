@@ -6,6 +6,7 @@ public class Ball extends Entity{
 
     GamePanel gp;
     Player p;
+    int collision=0;
 
 
     private int dirX = -1;
@@ -15,10 +16,10 @@ public class Ball extends Entity{
     {
         this.p=player;
         this.gp=GP;
-        this.speed=3;
+        this.speed=5000;
         this.x=100;
         this.y=100;
-        solidArea = new Rectangle (100,100,30,30);
+        solidArea = new Rectangle (100,100,25,25);
         getBallImage();
 
     }
@@ -28,7 +29,7 @@ public class Ball extends Entity{
     public void getBallImage()
     {
         try{
-            skin = ImageIO.read(getClass().getResourceAsStream("ball.png"));
+            skin = ImageIO.read(getClass().getResourceAsStream("ball1.png"));
         }catch(IOException e)
         {
             e.printStackTrace();
@@ -38,6 +39,15 @@ public class Ball extends Entity{
     public void update()
     {
         if(solidArea.intersects(p.solidArea)){
+            collision++;
+
+            if(collision > 1)
+            {
+                dirY+=15;
+            }
+            dirY-=13;
+
+
             dirY=-dirY;
 
         }
@@ -70,6 +80,6 @@ public class Ball extends Entity{
     public void draw(Graphics2D g2)
     {
         g2.draw(solidArea);
-        g2.drawImage(skin,x,y,30,30,null);
+        g2.drawImage(skin,x,y,25,25,null);
     }
 }

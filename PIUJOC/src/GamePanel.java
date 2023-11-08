@@ -10,17 +10,18 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize =16;
     final int scale=3;
     final int tileSize = originalTileSize*scale;
-    final int maxScreenCol=16;
-    final int maxScreenRow=12;
-    final int screenWidth=tileSize*maxScreenCol;
-    final int screenHeight=tileSize*maxScreenRow;
-
+    final int maxScreenCol=30;
+    final int maxScreenRow=20;
+    final int screenWidth = tileSize * maxScreenCol;
+    final int screenHeight = tileSize * maxScreenRow;
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     KeyHandler keyH = new KeyHandler();
     public CollisionChecker cChecker = new CollisionChecker(this);
 
     Thread gameThread;
     Player player = new Player(this,keyH);
     Ball ball = new Ball(this,player);
+    JFrame frame;
 
 
     //FPS
@@ -30,12 +31,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void startGameThread()
     {
+
         gameThread=new Thread(this);
         gameThread.start();
     }
     public GamePanel()
     {
-        this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+        this.setPreferredSize(new Dimension((int)screenSize.getWidth()-10,(int)screenSize.getHeight()-10));
         this.setBackground(Color.black);
 
         this.setDoubleBuffered(true);
@@ -99,7 +101,7 @@ public class GamePanel extends JPanel implements Runnable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        g2.drawImage(bk,100,100,500,500,null);
+        g2.drawImage(bk,100,100,900,900,null);
         player.draw(g2);
         ball.draw(g2);
 
