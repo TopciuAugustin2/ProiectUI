@@ -1,6 +1,11 @@
+import java.awt.*;
 public class CollisionChecker {
 
+    
     GamePanel gp;
+    Ball ball;
+    Player player;
+
     public CollisionChecker(GamePanel GP)
     {
         this.gp=GP;
@@ -9,17 +14,10 @@ public class CollisionChecker {
     {
 
     }
-    public void checkCollisionBall(Entity entity)
-    {
-        int ballLeftX=entity.solidArea.x;
-        int ballRightX=entity.solidArea.x+entity.solidArea.width;
-        int ballTopY=entity.solidArea.y;
-        int ballBottomY=entity.solidArea.x+entity.solidArea.height;;
-
-        int ballLeftCol = ballLeftX/gp.tileSize;
-        int ballRightCol = ballRightX/gp.tileSize;
-        int ballTopRow= ballTopY/gp.tileSize;
-        int ballBottomRow=ballBottomY/gp.tileSize;
-
+    private void checkCollision() {
+        if (ball.getBounds().intersects(player.getBounds())) {
+            ball.reverseYDirection();
+            //handleCollision(ball);
+        }
     }
 }
