@@ -7,6 +7,8 @@ public class Ball extends Entity{
     GamePanel gp;
     Player p;
     Vector2D direction;
+    public double speedX;
+    public double speedY;
 
 
 
@@ -16,6 +18,8 @@ public class Ball extends Entity{
         this.p=player;
         this.gp=GP;
         this.speed=3;
+        this.speedX = speed;
+        this.speedY = speed;
         this.direction = new Vector2D(300,200);
         solidArea = new Rectangle (300,200,25,25);
         getBallImage();
@@ -47,71 +51,67 @@ public class Ball extends Entity{
 
     public void update()
     {
-        direction.x += speed;
-        direction.y += speed;
+        direction.x += speedX;
+        direction.y += speedY;
 
-        solidArea.x+=speed;
-        solidArea.y+=speed;
+        solidArea.x+=speedX;
+        solidArea.y+=speedY;
 
-        System.out.println("X:" +direction.x+ "Y:" +direction.y);
-        if(solidArea.intersects(p.solidArea)){
-
-
+        System.out.println("X:" +direction.x+ " Y:" +direction.y);
+        if(solidArea.intersects(p.solidArea)) {
 
 
-            speed=-speed;
+            //speed=-speed;
             // punctul de coliziune al bilei cu playerul
 
-            double hitPointX= solidArea.intersection(p.solidArea).getX();
+            double hitPointX = solidArea.intersection(p.solidArea).getX();
 
-            System.out.println("Intersection" + solidArea.intersection(p.solidArea).getY());
+            System.out.println("******Intersection" + solidArea.intersection(p.solidArea).getY());
 
-            double paddleCenterX=p.solidArea.getCenterX();
+            double paddleCenterX = p.solidArea.getCenterX();
 
             //diferenta de centru player si hit point
 
-            double dif = paddleCenterX-hitPointX;
+            double dif = paddleCenterX - hitPointX;
 
             Vector2D reflectionVector;
 
             if (solidArea.x < paddleCenterX) {
-                reflectionVector = new Vector2D(direction.getX(), direction.getY());
-
-
+                reflectionVector = new Vector2D(direction.getX(), direction.getY()-2);
+                speedY = -speedY;
             } else {
-                reflectionVector = new Vector2D(direction.getX(), direction.getY());
-
-
+                reflectionVector = new Vector2D(direction.getX(), direction.getY()-2);
+                speedY = -speedY;
             }
 
             setDirection(reflectionVector);
 
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
-
         }
 
-        if (x < 0 || x > 380) {
-            reverseXDirection();
-            solidArea.x=(int)direction.x;
-            solidArea.y=(int)direction.y;
-
-        }
-
-        if (y < 0 || y > 280) {
-            reverseXDirection();
+        if (direction.x < 0 || direction.x > 1400) {
+            //reverseXDirection();
+            speedX = -speedX;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
         }
 
-
+        if (direction.y < 0 || direction.y > 900) {
+            //reverseYDirection();
+            speedY = -speedY;
+            solidArea.x=(int)direction.x;
+            solidArea.y=(int)direction.y;
+        }
     }
 
     public void reverseYDirection() {
-        direction = direction.reflectY();
+        direction = direction.reflectX();
+        speedX = -speedX;
     }
     public void reverseXDirection() {
-        direction = direction.reflectX();
+        direction = direction.reflectY();
+        speedY = -speedY;
     }
 
     public void draw(Graphics2D g2)
