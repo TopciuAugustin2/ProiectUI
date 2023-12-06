@@ -1,8 +1,10 @@
+import Parents.Entity;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-public class Ball extends Entity{
+public class Ball extends Entity {
 
     GamePanel gp;
     Player p;

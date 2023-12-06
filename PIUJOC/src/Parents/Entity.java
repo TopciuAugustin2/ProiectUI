@@ -1,8 +1,9 @@
-import javax.swing.*;
+package Parents;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Entity {
+ public class Entity {
 
     public int x,y;
 
@@ -14,5 +15,10 @@ public class Entity {
     public Rectangle solidArea;
 
     public int diameter;
+
+
+
+
+
 
 }

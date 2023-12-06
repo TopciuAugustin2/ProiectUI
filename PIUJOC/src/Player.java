@@ -1,11 +1,10 @@
+import Parents.Entity;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.desktop.ScreenSleepEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     GamePanel gp;
     KeyHandler keyH;
