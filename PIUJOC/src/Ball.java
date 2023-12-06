@@ -10,8 +10,6 @@ public class Ball extends Entity{
     public double speedX;
     public double speedY;
 
-
-
     //constructor -- initializare prop minge/mingi
     public Ball(GamePanel GP,Player player)
     {
@@ -54,19 +52,13 @@ public class Ball extends Entity{
         direction.x += speedX;
         direction.y += speedY;
 
-        solidArea.x+=speedX;
-        solidArea.y+=speedY;
+        solidArea.x += speedX;
+        solidArea.y += speedY;
 
-        System.out.println("X:" +direction.x+ " Y:" +direction.y);
         if(solidArea.intersects(p.solidArea)) {
-
-
-            //speed=-speed;
             // punctul de coliziune al bilei cu playerul
 
             double hitPointX = solidArea.intersection(p.solidArea).getX();
-
-            System.out.println("******Intersection" + solidArea.intersection(p.solidArea).getY());
 
             double paddleCenterX = p.solidArea.getCenterX();
 
