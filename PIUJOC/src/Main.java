@@ -8,7 +8,10 @@ public class Main {
         window.setResizable(true);
         window.setTitle("Jdefi");
 
-        GamePanel gamePanel = new GamePanel();
+
+        window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+
+        GamePanel gamePanel = new GamePanel(window);
 
         window.add(gamePanel);
         window.pack();

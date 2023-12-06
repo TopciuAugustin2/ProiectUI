@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
 
+    public JFrame window;
     final int originalTileSize =16;
     final int scale=3;
     final int tileSize = originalTileSize*scale;
@@ -35,14 +36,15 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread=new Thread(this);
         gameThread.start();
     }
-    public GamePanel()
+    public GamePanel(JFrame Window)
     {
-        this.setPreferredSize(new Dimension((int)screenSize.getWidth()-10,(int)screenSize.getHeight()-10));
+        this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
 
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        this.window=Window;
 
     }
 
@@ -101,7 +103,7 @@ public class GamePanel extends JPanel implements Runnable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        g2.drawImage(bk,100,100,900,900,null);
+        g2.drawImage(bk,window.getX(),window.getY(),window.getWidth(),window.getHeight(),null);
         player.draw(g2);
         ball.draw(g2);
 

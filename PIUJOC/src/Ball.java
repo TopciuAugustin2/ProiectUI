@@ -18,8 +18,8 @@ public class Ball extends Entity{
         this.p=player;
         this.gp=GP;
         this.speed=3;
-        this.speedX = speed;
-        this.speedY = speed;
+        this.speedX = speed*2;
+        this.speedY = speed*2;
         this.direction = new Vector2D(300,200);
         solidArea = new Rectangle (300,200,25,25);
         getBallImage();
