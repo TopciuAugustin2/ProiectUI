@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.desktop.ScreenSleepEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -7,15 +9,18 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 
-    public Player(GamePanel GP,KeyHandler KH)
+    public Player(GamePanel GP, KeyHandler KH)
     {
         this.gp=GP;
         this.keyH= KH;
         this.diameter=48*3;
 
-        solidArea= new Rectangle(600,900,diameter,diameter/3-20);
+        System.out.println(screenSize.getHeight());
+        System.out.println(screenSize.getWidth());
+        solidArea= new Rectangle((int)screenSize.getWidth()/2, (int)screenSize.getHeight()-200,diameter,diameter/3-20);
 
         setDefaultValues();
         getPlayerImage();
@@ -37,8 +42,8 @@ public class Player extends Entity{
 
     public void setDefaultValues()
     {
-        x=600;
-        y=900;
+        x=(int)screenSize.getWidth()/2;
+        y=(int)screenSize.getHeight()-200;
         speed=10;
     }
 

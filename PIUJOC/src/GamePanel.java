@@ -20,12 +20,12 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionChecker cChecker = new CollisionChecker(this);
 
     Thread gameThread;
-    Player player = new Player(this,keyH);
-    Ball ball = new Ball(this,player);
-    JFrame frame;
+    Player player;
+    Ball ball;
 
 
-    //FPS
+
+    //FPSJFrame frame;
     int FPS =60;
 
     //player position
@@ -38,13 +38,15 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public GamePanel(JFrame Window)
     {
+        this.window=Window;
+
         this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
-
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        this.window=Window;
+        this.player = new Player(this,keyH);
+        this.ball = new Ball(this,player);
 
     }
 
@@ -103,7 +105,8 @@ public class GamePanel extends JPanel implements Runnable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        g2.drawImage(bk,window.getX(),window.getY(),window.getWidth(),window.getHeight(),null);
+        g2.drawImage(bk,0,0,window.getWidth(),window.getHeight(),null);
+
         player.draw(g2);
         ball.draw(g2);
 
