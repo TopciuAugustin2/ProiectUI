@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class Ball extends Entity {
 
+
     GamePanel gp;
     Player p;
     Vector2D direction;
@@ -23,6 +24,7 @@ public class Ball extends Entity {
         this.direction = new Vector2D(300,200);
         solidArea = new Rectangle (300,200,25,25);
         getBallImage();
+        this.dmg=1;
 
     }
 
