@@ -11,11 +11,10 @@ public class UI {
     public boolean gameFinished = false;
     public int commandNum = 0;
 
-    GameFont font = new GameFont();
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        arial_40 = new Font("font", Font.PLAIN, 40);
+        arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
     }
 
