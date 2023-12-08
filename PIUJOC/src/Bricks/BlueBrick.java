@@ -19,12 +19,18 @@ public class BlueBrick extends Brick {
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
         getBrickSkinImage();
     }
+    public void update()
+    {
+        if(ball.solidArea.intersects(this.solidArea))
+        {
+            getHit();
+        }
+    }
     @Override
     public void getHit() {
 
-        if(ball.solidArea.intersects(this.solidArea))
-        {
-            System.out.println("Coliziune tati");
+
+
 
             this.hp-=ball.dmg;
 
@@ -32,12 +38,9 @@ public class BlueBrick extends Brick {
             {
                 Destroy();
             }
-        }
-
-
-
 
     }
+
     public void draw(Graphics2D g2)
     {
         g2.draw(solidArea);
@@ -48,8 +51,7 @@ public class BlueBrick extends Brick {
 
     @Override
     public void Destroy() {
-        System.out.println("Brick Destroyed");
-        this.solidArea=null;
+
         this.skin=null;
     }
 

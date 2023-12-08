@@ -110,8 +110,11 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-        player.update();
-        ball.update();
+        if(gameState==playState) {
+            player.update();
+            ball.update();
+            brick1.update();
+        }
 
     }
     public void paintComponent(Graphics g)
@@ -134,7 +137,14 @@ public class GamePanel extends JPanel implements Runnable{
 
             player.draw(g2);
             ball.draw(g2);
-            brick1.draw(g2);
+
+            if(brick1.hp>0)
+            {
+
+                brick1.draw(g2);
+
+            }
+
             //UI
             ui.draw(g2);
         }
