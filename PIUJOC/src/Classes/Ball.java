@@ -1,3 +1,5 @@
+package Classes;
+
 import Parents.Entity;
 
 import javax.imageio.ImageIO;
@@ -33,7 +35,7 @@ public class Ball extends Entity {
     public void getBallImage()
     {
         try{
-            skin = ImageIO.read(getClass().getResourceAsStream("ball1.png"));
+            skin = ImageIO.read(getClass().getResourceAsStream("/Classes/ball1.png"));
         }catch(IOException e)
         {
             e.printStackTrace();

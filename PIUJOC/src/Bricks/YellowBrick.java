@@ -2,6 +2,10 @@ package Bricks;
 
 import Parents.Brick;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.IOException;
+
 public class YellowBrick extends Brick {
 
 
@@ -18,6 +22,26 @@ public class YellowBrick extends Brick {
 //        {
 //            Destroy();
 //        }
+
+    }
+
+    @Override
+    public void Destroy() {
+
+    }
+
+    @Override
+    public void getBrickSkinImage() {
+        try{
+            skin = ImageIO.read(getClass().getResourceAsStream("yellowBrick.png"));
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void draw(Graphics2D g2)
+    {
+        g2.draw(solidArea);
 
     }
 }

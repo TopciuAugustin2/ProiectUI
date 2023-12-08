@@ -1,3 +1,5 @@
+package Classes;
+
 import Parents.Entity;
 
 import javax.imageio.ImageIO;
@@ -17,8 +19,6 @@ public class Player extends Entity {
         this.keyH= KH;
         this.diameter=48*3;
 
-        System.out.println(screenSize.getHeight());
-        System.out.println(screenSize.getWidth());
         solidArea= new Rectangle((int)screenSize.getWidth()/2, (int)screenSize.getHeight()-200,diameter,diameter/3-20);
 
         setDefaultValues();
@@ -32,7 +32,7 @@ public class Player extends Entity {
     public void getPlayerImage()
     {
         try{
-            skin = ImageIO.read(getClass().getResourceAsStream("skin.png"));
+            skin = ImageIO.read(getClass().getResourceAsStream("/Classes/skin.png"));
         }catch(IOException e)
         {
             e.printStackTrace();
@@ -50,7 +50,6 @@ public class Player extends Entity {
     {
         if(keyH.leftPressed==true)
         {
-
 
 
                 x-=speed;

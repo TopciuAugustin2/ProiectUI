@@ -1,5 +1,6 @@
+package Classes;
+
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class UI {
     GamePanel gp;
@@ -10,6 +11,7 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
     public int commandNum = 0;
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -72,7 +74,7 @@ public class UI {
     public void drawGameOverScreen()
     {
         g2.setColor(new Color(0,0,0,150));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.fillRect(0,0,screenSize.width,screenSize.width);
 
         int x;
         int y;
@@ -112,13 +114,13 @@ public class UI {
     public void drawTitleScreen()
     {
         g2.setColor(new Color(0,96,255));
-        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+        g2.fillRect(0,0,screenSize.width,screenSize.width);
 
         //TITLE NAME
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
         String text = "Arkanoid";
         int x = getXforCenteredText(text);
-        int y = gp.tileSize * 2;
+        int y = (int)screenSize.getHeight() / 3;
 
         //SHADOW
         g2.setColor(Color.black);
@@ -140,7 +142,7 @@ public class UI {
 
         text = "SETTINGS";
         x = getXforCenteredText(text);
-        y = y + gp.tileSize;
+        y = y + gp.tileSize*2;
         g2.drawString(text, x, y);
         if(commandNum == 1) {
             g2.drawString(">", x-gp.tileSize, y);
@@ -148,7 +150,7 @@ public class UI {
 
         text = "QUIT";
         x = getXforCenteredText(text);
-        y = y + gp.tileSize;
+        y = y + gp.tileSize*2;
         g2.drawString(text, x, y);
         if(commandNum == 2) {
             g2.drawString(">", x-gp.tileSize, y);
@@ -169,7 +171,7 @@ public class UI {
     public int getXforCenteredText(String text)
     {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth/2 - length/2;
+        int x = screenSize.width/2 - length/2;
         return x;
     }
 }

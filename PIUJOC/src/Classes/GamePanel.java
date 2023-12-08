@@ -1,3 +1,7 @@
+package Classes;
+
+import Bricks.*;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     Player player;
     Ball ball;
+    BlueBrick brick1;
 
     public  UI ui = new UI(this);
 
@@ -54,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.player = new Player(this,keyH);
         this.ball = new Ball(this,player);
+        this.brick1 = new BlueBrick(this.ball);
+
 
     }
 
@@ -119,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         else{
             try {
-                bk = ImageIO.read(getClass().getResourceAsStream("/backgroud.png"));
+                bk = ImageIO.read(getClass().getResourceAsStream("/Classes/backgroud.png"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -127,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable{
 
             player.draw(g2);
             ball.draw(g2);
-
+            brick1.draw(g2);
             //UI
             ui.draw(g2);
         }

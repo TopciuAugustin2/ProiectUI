@@ -1,4 +1,5 @@
-import javax.swing.*;
+package Classes;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -22,13 +23,13 @@ public class KeyHandler implements KeyListener {
 
         //TITLE STATE
         if(gp.gameState == gp.titleState) {
-            if(key == KeyEvent.VK_W) {
+            if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum < 0) {
                     gp.ui.commandNum = 2;
                 }
             }
-            if(key == KeyEvent.VK_S) {
+            if(key == KeyEvent.VK_S ||  key == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
                 if(gp.ui.commandNum > 2) {
                     gp.ui.commandNum = 0;
@@ -47,11 +48,11 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        if(key==KeyEvent.VK_LEFT)
+        if(key==KeyEvent.VK_LEFT || key == KeyEvent.VK_A)
         {
             leftPressed=true;
         }
-        if(key==KeyEvent.VK_RIGHT)
+        if(key==KeyEvent.VK_RIGHT || key == KeyEvent.VK_D)
         {
             rightPressed=true;
         }
@@ -96,19 +97,19 @@ public class KeyHandler implements KeyListener {
 
         int key = e.getKeyCode();
 
-        if(key==KeyEvent.VK_LEFT)
+        if(key==KeyEvent.VK_LEFT || key == KeyEvent.VK_A)
         {
             leftPressed=false;
         }
-        if(key==KeyEvent.VK_RIGHT)
+        if(key==KeyEvent.VK_RIGHT || key == KeyEvent.VK_D)
         {
             rightPressed=false;
         }
-        if(key == KeyEvent.VK_W)
+        if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP)
         {
             upPressed=false;
         }
-        if(key == KeyEvent.VK_S)
+        if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN)
         {
             downPressed=false;
         }

@@ -1,4 +1,5 @@
-import java.awt.*;
+package Classes;
+
 public class CollisionChecker {
 
     
