@@ -8,7 +8,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
-        window.setTitle("Jdefi");
+        window.setTitle("Arkanoid");
 
 
         window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);

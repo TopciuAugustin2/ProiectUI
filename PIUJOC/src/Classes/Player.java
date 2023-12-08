@@ -18,7 +18,7 @@ public class Player extends Entity {
         this.gp=GP;
         this.keyH= KH;
         this.diameter=48*3;
-        
+
         solidArea= new Rectangle((int)screenSize.getWidth()/2, (int)screenSize.getHeight()-200,diameter,diameter/3-20);
 
         setDefaultValues();
