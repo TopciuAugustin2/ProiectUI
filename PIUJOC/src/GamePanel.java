@@ -16,14 +16,21 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenWidth = tileSize * maxScreenCol;
     final int screenHeight = tileSize * maxScreenRow;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    KeyHandler keyH = new KeyHandler();
+    public KeyHandler keyH = new KeyHandler(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
 
     Thread gameThread;
     Player player;
     Ball ball;
 
+    public  UI ui = new UI(this);
 
+    //GAME STATE
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int gameOverState = 3;
 
     //FPSJFrame frame;
     int FPS =60;
@@ -50,8 +57,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
 
+    public void setupGame() {
+        gameState = titleState;
+    }
 
-
+    public void restart() {
+        player.setDefaultValues();;
+    }
 
     @Override
     public void run() {
@@ -100,18 +112,26 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         BufferedImage bk;
-        try {
-            bk = ImageIO.read(getClass().getResourceAsStream("/backgroud.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        //TITLE SCREEN
+        if(gameState == titleState) {
+            ui.draw(g2);
         }
-        g2.drawImage(bk,0,0,window.getWidth(),window.getHeight(),null);
+        else{
+            try {
+                bk = ImageIO.read(getClass().getResourceAsStream("/backgroud.png"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            g2.drawImage(bk,0,0,window.getWidth(),window.getHeight(),null);
 
-        player.draw(g2);
-        ball.draw(g2);
+            player.draw(g2);
+            ball.draw(g2);
 
+            //UI
+            ui.draw(g2);
+        }
 
         g2.dispose();
-
     }
 }
