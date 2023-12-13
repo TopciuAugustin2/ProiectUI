@@ -14,6 +14,7 @@ public class Ball extends Entity {
     Vector2D direction;
     public double speedX;
     public double speedY;
+    Rectangle phantom;
 
     //constructor -- initializare prop minge/mingi
     public Ball(GamePanel GP,Player player)
@@ -21,10 +22,11 @@ public class Ball extends Entity {
         this.p=player;
         this.gp=GP;
         this.speed=3;
-        this.speedX = speed*2;
-        this.speedY = speed*2;
+        this.speedX = speed;
+        this.speedY = speed;
         this.direction = new Vector2D(300,200);
         solidArea = new Rectangle (300,200,25,25);
+        phantom = new Rectangle(290,190,25,25);
         getBallImage();
         this.dmg=1;
 
@@ -60,6 +62,8 @@ public class Ball extends Entity {
 
         solidArea.x += speedX;
         solidArea.y += speedY;
+        phantom.x +=speedX;
+        phantom.y +=speedX;
 
         if(solidArea.intersects(p.solidArea)) {
             // punctul de coliziune al bilei cu playerul
@@ -93,6 +97,8 @@ public class Ball extends Entity {
             speedX = -speedX;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
+            phantom.x=(int)direction.x;
+            phantom.y=(int)direction.y;
         }
 
         if (direction.y < 0 || direction.y > 900) {
@@ -100,6 +106,8 @@ public class Ball extends Entity {
             speedY = -speedY;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
+            phantom.x=(int)direction.x;
+            phantom.y=(int)direction.y;
         }
     }
 
@@ -115,6 +123,8 @@ public class Ball extends Entity {
     public void draw(Graphics2D g2)
     {
         g2.draw(solidArea);
+        g2.draw(new Rectangle(0,0,30*16,20*16));
         g2.drawImage(skin,(int)direction.getX(),(int)direction.getY(),25,25,null);
+        g2.draw(phantom);
     }
 }

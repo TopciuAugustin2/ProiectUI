@@ -29,9 +29,6 @@ public class BlueBrick extends Brick {
     @Override
     public void getHit() {
 
-
-
-
             this.hp-=ball.dmg;
 
             if(hp<=0)
