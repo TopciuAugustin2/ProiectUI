@@ -66,7 +66,7 @@ public class Ball extends Entity {
 
         double playerIntersectsColliderX = solidArea.intersection(collider).getX();
         double playerIntersectsColliderY = solidArea.intersection(collider).getY();
-        
+
         if(solidArea.intersects(p.solidArea)) {
             // punctul de coliziune al bilei cu playerul
 
@@ -100,19 +100,32 @@ public class Ball extends Entity {
             solidArea.y=(int)direction.y;
         }
 
-        if (direction.x < 0 || direction.x > 1400) {
+        if (gp.leftWall.solidArea.intersects(solidArea)) {
             //reverseXDirection();
             speedX = -speedX;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
         }
-
-        if (direction.y < 0 || direction.y > 900) {
+        if (gp.rightWall.solidArea.intersects(solidArea)) {
+            //reverseYDirection();
+            speedX = -speedX;
+            solidArea.x=(int)direction.x;
+            solidArea.y=(int)direction.y;
+        }
+        if (gp.topWall.solidArea.intersects(solidArea)) {
             //reverseYDirection();
             speedY = -speedY;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
         }
+
+        if(solidArea.y >= gp.screenHeight+10)
+        {
+            gp.gameState=gp.gameOverState;
+
+        }
+
+
     }
 
     public void reverseYDirection() {

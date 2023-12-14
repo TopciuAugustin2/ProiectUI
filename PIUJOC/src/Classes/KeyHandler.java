@@ -82,6 +82,8 @@ public class KeyHandler implements KeyListener {
             }
             if(key == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0) {
+                    //aici e retry
+                    gp.restart();
                     gp.gameState = gp.playState;
                 }
                 else if(gp.ui.commandNum == 1) {

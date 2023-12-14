@@ -23,6 +23,10 @@ public class GamePanel extends JPanel implements Runnable{
     public KeyHandler keyH = new KeyHandler(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
 
+    Wall leftWall,topWall,rightWall;
+
+
+
     Thread gameThread;
     Player player;
     Ball ball;
@@ -61,6 +65,9 @@ public class GamePanel extends JPanel implements Runnable{
         this.ball = new Ball(this,player);
         this.brick1 = new BlueBrick(this.ball);
 
+        this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
+        this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
+        this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
 
     }
 
@@ -69,7 +76,20 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void restart() {
-        player.setDefaultValues();;
+        player.setDefaultValues();
+        this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        this.addKeyListener(keyH);
+        this.setFocusable(true);
+        this.player = new Player(this,keyH);
+        this.ball = new Ball(this,player);
+        this.brick1 = new BlueBrick(this.ball);
+
+        this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
+        this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
+        this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
+
     }
 
     @Override
@@ -116,6 +136,7 @@ public class GamePanel extends JPanel implements Runnable{
             brick1.update();
         }
 
+
     }
     public void paintComponent(Graphics g)
     {
@@ -137,6 +158,11 @@ public class GamePanel extends JPanel implements Runnable{
 
             player.draw(g2);
             ball.draw(g2);
+
+            topWall.draw(g2);
+            leftWall.draw(g2);
+            rightWall.draw(g2);
+
 
             if(brick1.hp>0)
             {
