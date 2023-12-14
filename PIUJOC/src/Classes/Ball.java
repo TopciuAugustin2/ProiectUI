@@ -71,6 +71,7 @@ public class Ball extends Entity {
             // punctul de coliziune al bilei cu playerul
 
             double hitPointX = solidArea.intersection(p.solidArea).getX();
+            double hitPointY = solidArea.intersection(p.solidArea).getY();
 
             double paddleCenterX = p.solidArea.getCenterX();
 
@@ -83,18 +84,16 @@ public class Ball extends Entity {
             Vector2D cornerLeft = new Vector2D(p.solidArea.getX(), p.solidArea.getY());
             Vector2D cornerRight = new Vector2D(p.solidArea.getX() + p.solidArea.width, p.solidArea.getY());
 
-            /*double distanceLeft = phantomDirection.distance(cornerLeft);
-            double distanceRight = phantomDirection.distance(cornerRight);*/
+            Vector2D intersection = new Vector2D(playerIntersectsColliderX, playerIntersectsColliderY);
+
+            double distanceLeft = direction.distance(cornerLeft);
+            double distanceRight = direction.distance(cornerRight);
 
             if (solidArea.x < paddleCenterX) {
-                reflectionVector = new Vector2D(direction.getX(), direction.getY()-2);
                 speedY = -speedY;
             } else {
-                reflectionVector = new Vector2D(direction.getX(), direction.getY()-2);
                 speedY = -speedY;
             }
-
-            setDirection(reflectionVector);
 
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
