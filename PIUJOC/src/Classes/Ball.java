@@ -14,19 +14,17 @@ public class Ball extends Entity {
     Vector2D direction;
     public double speedX;
     public double speedY;
-    Rectangle phantom;
 
     //constructor -- initializare prop minge/mingi
     public Ball(GamePanel GP,Player player)
     {
         this.p=player;
         this.gp=GP;
-        this.speed=3;
+        this.speed=3 * 2;
         this.speedX = speed;
         this.speedY = speed;
         this.direction = new Vector2D(300,200);
         solidArea = new Rectangle (300,200,25,25);
-        phantom = new Rectangle(290,190,25,25);
         getBallImage();
         this.dmg=1;
 
@@ -62,8 +60,6 @@ public class Ball extends Entity {
 
         solidArea.x += speedX;
         solidArea.y += speedY;
-        phantom.x +=speedX;
-        phantom.y +=speedX;
 
         if(solidArea.intersects(p.solidArea)) {
             // punctul de coliziune al bilei cu playerul
@@ -77,6 +73,12 @@ public class Ball extends Entity {
             double dif = paddleCenterX - hitPointX;
 
             Vector2D reflectionVector;
+
+            Vector2D cornerLeft = new Vector2D(p.solidArea.getX(), p.solidArea.getY());
+            Vector2D cornerRight = new Vector2D(p.solidArea.getX() + p.solidArea.width, p.solidArea.getY());
+
+            /*double distanceLeft = phantomDirection.distance(cornerLeft);
+            double distanceRight = phantomDirection.distance(cornerRight);*/
 
             if (solidArea.x < paddleCenterX) {
                 reflectionVector = new Vector2D(direction.getX(), direction.getY()-2);
@@ -97,8 +99,6 @@ public class Ball extends Entity {
             speedX = -speedX;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
-            phantom.x=(int)direction.x;
-            phantom.y=(int)direction.y;
         }
 
         if (direction.y < 0 || direction.y > 900) {
@@ -106,8 +106,6 @@ public class Ball extends Entity {
             speedY = -speedY;
             solidArea.x=(int)direction.x;
             solidArea.y=(int)direction.y;
-            phantom.x=(int)direction.x;
-            phantom.y=(int)direction.y;
         }
     }
 
@@ -125,6 +123,5 @@ public class Ball extends Entity {
         g2.draw(solidArea);
         g2.draw(new Rectangle(0,0,30*16,20*16));
         g2.drawImage(skin,(int)direction.getX(),(int)direction.getY(),25,25,null);
-        g2.draw(phantom);
     }
 }
