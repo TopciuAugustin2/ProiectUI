@@ -14,6 +14,8 @@ public class Ball extends Entity {
     Vector2D direction;
     public double speedX;
     public double speedY;
+    Rectangle collider;
+
 
     //constructor -- initializare prop minge/mingi
     public Ball(GamePanel GP,Player player)
@@ -27,6 +29,7 @@ public class Ball extends Entity {
         solidArea = new Rectangle (300,200,25,25);
         getBallImage();
         this.dmg=1;
+        this.collider = new Rectangle(0,p.y-20,gp.screenSize.width,1);
 
     }
 
@@ -61,6 +64,9 @@ public class Ball extends Entity {
         solidArea.x += speedX;
         solidArea.y += speedY;
 
+        double playerIntersectsColliderX = solidArea.intersection(collider).getX();
+        double playerIntersectsColliderY = solidArea.intersection(collider).getY();
+        
         if(solidArea.intersects(p.solidArea)) {
             // punctul de coliziune al bilei cu playerul
 
@@ -123,5 +129,6 @@ public class Ball extends Entity {
         g2.draw(solidArea);
         g2.draw(new Rectangle(0,0,30*16,20*16));
         g2.drawImage(skin,(int)direction.getX(),(int)direction.getY(),25,25,null);
+        g2.draw(collider);
     }
 }
