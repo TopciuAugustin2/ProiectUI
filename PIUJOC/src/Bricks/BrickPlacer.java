@@ -19,14 +19,14 @@ public class BrickPlacer {
     public Brick[][] hartaBricksObiecte;
 
     int maxWorldCol = 13;
-    int maxWorldRow = 42;
+    int maxWorldRow = 12;
 
     Ball ball;
 
     public BrickPlacer(GamePanel gp,Ball ball) {
         this.gp = gp;
         this.ball=ball;
-        this.hartaBricksObiecte = new Brick[42][13];
+        this.hartaBricksObiecte = new Brick[12][13];
         loadBrickModel("/Bricks/map1.txt");
 //        hartaBricks = new int[43][14];
 //        hartaBricksObiecte = new Brick[43][14];
@@ -42,7 +42,7 @@ public class BrickPlacer {
 //    }
 
     public void loadBrickModel(String filepath) {
-        //42 pe 13
+        //12 pe 13
 
         try {
             InputStream is = getClass().getResourceAsStream(filepath);
@@ -94,9 +94,9 @@ public class BrickPlacer {
         int brickWidth = 1920 / 10;  // Calculăm lățimea fiecărui brick
         int brickHeight = 1200 / 10;  // Calculăm înălțimea fiecărui brick
 
-        for(int i=1;i<=41;i++)
+        for(int i=0;i<12;i++)
         {
-            for(int j=1;j<=12;j++)
+            for(int j=0;j<13;j++)
             {
                 int worldX = j * brickWidth;  // Calculăm poziția X a fiecărui brick
                 int worldY = i * brickHeight;  // Calculăm poziția Y a fiecărui brick
@@ -110,11 +110,11 @@ public class BrickPlacer {
 
     public void update()
     {
-        for(int i=1;i<=41;i++)
+        for(int i=0;i<12;i++)
         {
-            for(int j=1;j<=12;j++)
+            for(int j=0;j<13;j++)
             {
-               // hartaBricksObiecte[i][j].update();
+                hartaBricksObiecte[i][j].update();
                 System.out.println(hartaBricksObiecte[i][j].solidArea);
             }
 

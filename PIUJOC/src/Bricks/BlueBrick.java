@@ -24,10 +24,10 @@ public class BlueBrick extends Brick {
     {
         if(ball.solidArea.intersects(this.solidArea))
         {
-
+            System.out.println("hit");
             getHit();
         }
-
+        System.out.println("no hit");
 
     }
     @Override
