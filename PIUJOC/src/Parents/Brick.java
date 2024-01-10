@@ -15,5 +15,5 @@ public abstract class Brick extends Entity {
     public abstract void getBrickSkinImage();
 
 
-
+    public abstract void draw(Graphics2D g2,int a,int b);
 }

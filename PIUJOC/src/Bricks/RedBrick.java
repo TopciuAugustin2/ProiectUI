@@ -1,5 +1,6 @@
 package Bricks;
 
+import Classes.Ball;
 import Parents.Brick;
 
 import javax.imageio.ImageIO;
@@ -8,39 +9,57 @@ import java.io.IOException;
 
 public class RedBrick extends Brick {
 
-    public RedBrick()
+    Ball ball;
+
+    public RedBrick(Ball Ball)
     {
-        this.hp=5;
+        this.ball=Ball;
+        this.hp=1;
+        this.diameter=48*3;
+        this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
+        getBrickSkinImage();
+    }
+    public void update()
+    {
+        if(ball.solidArea.intersects(this.solidArea))
+        {
+            getHit();
+        }
     }
     @Override
     public void getHit() {
-        //hp=hp-p.dmg;
 
-        //if(hp==0)
-//        {
-//            Destroy();
-//        }
+        this.hp-=ball.dmg;
 
+        if(hp<=0)
+        {
+            Destroy();
+        }
 
     }
+    @Override
+    public void draw(Graphics2D g2,int a,int b)
+    {
+        g2.draw(solidArea);
+        g2.drawImage(skin,a,b,48*3,48-20,null);
+    }
+
 
     @Override
     public void Destroy() {
 
+        this.skin=null;
     }
 
     @Override
     public void getBrickSkinImage() {
+
         try{
             skin = ImageIO.read(getClass().getResourceAsStream("redbrick.png"));
         }catch(IOException e)
         {
             e.printStackTrace();
         }
-    }
-    public void draw(Graphics2D g2)
-    {
-        g2.draw(solidArea);
 
     }
 }

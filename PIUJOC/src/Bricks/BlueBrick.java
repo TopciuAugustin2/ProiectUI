@@ -37,11 +37,11 @@ public class BlueBrick extends Brick {
             }
 
     }
-
-    public void draw(Graphics2D g2)
+    @Override
+    public void draw(Graphics2D g2,int a,int b)
     {
         g2.draw(solidArea);
-        g2.drawImage(skin,500,500,48*3,48-20,null);
+        g2.drawImage(skin,a,b,48*3,48-20,null);
 
     }
 
@@ -62,8 +62,5 @@ public class BlueBrick extends Brick {
                 e.printStackTrace();
             }
 
-
     }
-
-
 }
