@@ -4,10 +4,10 @@ import Parents.Entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 
 public class Ball extends Entity {
-
 
     GamePanel gp;
     Player p;
@@ -53,57 +53,102 @@ public class Ball extends Entity {
         return new Rectangle(x, y, diameter, diameter);
     }
 
-    public void update() {
-        direction.x += speedX;
-        direction.y += speedY;
+    boolean flag = false;
 
-        solidArea.x += speedX;
-        solidArea.y += speedY;
+    public void update() {
+        if (flag) {
+            direction.y += speedY;
+            solidArea.y += speedY;
+        } else {
+            direction.x += speedX;
+            direction.y += speedY;
+            solidArea.x += speedX;
+            solidArea.y += speedY;
+        }
 
         if (solidArea.intersects(p.solidArea)) {
             // punctul de coliziune al bilei cu playerul
             double paddleCenterX = p.solidArea.getCenterX();
 
-            //diferenta de centru player si hit point
+            Rectangle lefSideOfPaddle =
+                    new Rectangle((int) p.solidArea.getX(), (int) p.solidArea.getY(), (int) ((p.solidArea.getWidth() / 2) - (solidArea.getWidth() / 2)), (int) p.solidArea.getHeight());
 
-
-            if (solidArea.x < paddleCenterX) {
-                speedY = -speedY;
-            } else {
-                speedY = -speedY;
-            }
-
-            Rectangle lefSideOfPaddle = new Rectangle((int) p.solidArea.getX()
-                    , (int) p.solidArea.getY(),
-                    (int) (p.solidArea.getWidth() / 2 - p.solidArea.height),
+            Rectangle rightSideOfPaddle = new Rectangle((int) (paddleCenterX + (solidArea.getWidth() / 2)), (int) p.solidArea.getY(), (int) ((p.solidArea.getWidth() / 2) - (solidArea.getWidth() / 2)),
                     (int) p.solidArea.getHeight());
 
-            Rectangle rightSideOfPaddle = new Rectangle((int) (p.solidArea.getX() + (p.solidArea.getWidth() / 2 + p.solidArea.height))
-                    , (int) p.solidArea.getY(),
-                    (int) (p.solidArea.getWidth() / 2 - p.solidArea.height),
-                    (int) p.solidArea.getHeight());
-            if (currentDirection.equals("right") && solidArea.intersects(lefSideOfPaddle)) {
+            Rectangle centerSideOfPaddle = new Rectangle((int) (paddleCenterX - solidArea.getWidth() / 8), (int) p.solidArea.getY(), (int) solidArea.getWidth() / 4, (int) p.solidArea.getHeight());
+
+            if (solidArea.intersects(centerSideOfPaddle)) {
+                flag = true;
+                currentDirection = "straight";
+            } else if (currentDirection.equals("straight") && solidArea.intersects(rightSideOfPaddle)) {
+                currentDirection = "right";
+                if (speedX < 0) {
+                    speedX = -speedX;
+                }
+                flag = false;
+            } else if (currentDirection.equals("straight") && solidArea.intersects(lefSideOfPaddle)) {
+                currentDirection = "left";
+                if (speedX > 0) {
+                    speedX = -speedX;
+                }
+                flag = false;
+            } else if (currentDirection.equals("right") && solidArea.intersects(lefSideOfPaddle)) {
+                double v = (p.solidArea.getWidth() - Math.abs(solidArea.x - paddleCenterX)) / 50;
+                speedY += v;
                 reverseXDirection();
             } else if (currentDirection.equals("left") && solidArea.intersects(rightSideOfPaddle)) {
                 reverseXDirection();
+                double v = (p.solidArea.getWidth() - Math.abs(solidArea.x - paddleCenterX)) / 50;
+                speedY += v;
+            } else {
+                if (speedY < 0) {
+                    speedY = -6;
+                } else {
+                    speedY = 6;
+                }
             }
             solidArea.x = (int) direction.x;
             solidArea.y = (int) direction.y;
+
+            speedY = -speedY;
         }
 
         if (gp.leftWall.solidArea.intersects(solidArea)) {
+            resetAngle();
             reverseXDirection();
         }
         if (gp.rightWall.solidArea.intersects(solidArea)) {
             reverseXDirection();
+            resetAngle();
         }
         if (gp.topWall.solidArea.intersects(solidArea)) {
             reverseYDirection();
         }
 
-        if (solidArea.y >= gp.screenHeight + 10) {
-            gp.gameState = gp.gameOverState;
+//        if (solidArea.y >= gp.screenHeight + 10) {
+//            gp.gameState = gp.gameOverState;
+//
+//        }
+    }
 
+    private void changeAngleSlightly(int maxAngle) {
+        if (speedY > 0) {
+            int n = new Random().nextInt(2);
+            int n2 = new Random().nextInt(maxAngle) + 2;
+            if (n == 0) {
+                speedY += n2;
+            } else {
+                speedY -= n2;
+            }
+        }
+    }
+
+    private void resetAngle() {
+        if (speedY < 0) {
+            speedY = -6;
+        } else {
+            speedY = 6;
         }
     }
 

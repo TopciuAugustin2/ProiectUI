@@ -115,7 +115,7 @@ public class BrickPlacer {
             for(int j=0;j<13;j++)
             {
                 hartaBricksObiecte[i][j].update();
-                System.out.println(hartaBricksObiecte[i][j].solidArea);
+                //System.out.println(hartaBricksObiecte[i][j].solidArea);
             }
 
         }
