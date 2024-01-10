@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     Player player;
     Ball ball;
-    BlueBrick brick1;
+    BrickPlacer brickPlacer;
 
     public  UI ui = new UI(this);
 
@@ -63,11 +63,11 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.player = new Player(this,keyH);
         this.ball = new Ball(this,player);
-        this.brick1 = new BlueBrick(this.ball);
-
         this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
+
+        this.brickPlacer = new BrickPlacer(this,this.ball);
 
     }
 
@@ -84,11 +84,11 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.player = new Player(this,keyH);
         this.ball = new Ball(this,player);
-        this.brick1 = new BlueBrick(this.ball);
-
         this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
+
+        this.brickPlacer = new BrickPlacer(this,this.ball);
 
     }
 
@@ -130,13 +130,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-        if(gameState==playState) {
+        if(gameState==playState)
+        {
             player.update();
             ball.update();
-            brick1.update();
+            brickPlacer.update();
         }
-
-
     }
     public void paintComponent(Graphics g)
     {
@@ -156,20 +155,17 @@ public class GamePanel extends JPanel implements Runnable{
             }
             g2.drawImage(bk,0,0,window.getWidth(),window.getHeight(),null);
 
+
+
             player.draw(g2);
             ball.draw(g2);
 
+
+            brickPlacer.draw(g2);
             topWall.draw(g2);
             leftWall.draw(g2);
             rightWall.draw(g2);
 
-
-            if(brick1.hp>0)
-            {
-
-                brick1.draw(g2);
-
-            }
 
             //UI
             ui.draw(g2);

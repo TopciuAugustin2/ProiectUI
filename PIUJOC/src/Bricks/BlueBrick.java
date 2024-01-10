@@ -4,6 +4,7 @@ import Classes.Ball;
 import Parents.Brick;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
@@ -16,15 +17,18 @@ public class BlueBrick extends Brick {
         this.ball=Ball;
         this.hp=1;
         this.diameter=48*3;
-        this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
+        this.solidArea=new Rectangle(300, 300,diameter,diameter/3-20);
         getBrickSkinImage();
     }
     public void update()
     {
         if(ball.solidArea.intersects(this.solidArea))
         {
+
             getHit();
         }
+
+
     }
     @Override
     public void getHit() {
@@ -40,11 +44,12 @@ public class BlueBrick extends Brick {
     @Override
     public void draw(Graphics2D g2,int a,int b)
     {
-        g2.draw(solidArea);
-        g2.drawImage(skin,a,b,48*3,48-20,null);
+        solidArea= new Rectangle(a, b,diameter,diameter/3-20);
+        g2.setColor(Color.RED);
+        g2.fillRect(solidArea.x, solidArea.y, diameter,diameter/3-20);
+        //g2.drawImage(skin,a,b,48*3,48-20,null);
 
     }
-
 
     @Override
     public void Destroy() {

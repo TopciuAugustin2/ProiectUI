@@ -13,7 +13,8 @@ public abstract class Brick extends Entity {
     public abstract void getHit();
     public abstract void Destroy();
     public abstract void getBrickSkinImage();
-
+    public abstract void update();
 
     public abstract void draw(Graphics2D g2,int a,int b);
+
 }
