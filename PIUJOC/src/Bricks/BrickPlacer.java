@@ -91,15 +91,15 @@ public class BrickPlacer {
 
     public void draw(Graphics2D g2) {
 
-        int brickWidth = 1920 / 10;  // Calculăm lățimea fiecărui brick
-        int brickHeight = 1200 / 10;  // Calculăm înălțimea fiecărui brick
+        int brickWidth = 1920 / 5;  // Calculăm lățimea fiecărui brick
+        int brickHeight = 1200 / 12;  // Calculăm înălțimea fiecărui brick
 
         for(int i=0;i<12;i++)
         {
             for(int j=0;j<13;j++)
             {
-                int worldX = j * brickWidth;  // Calculăm poziția X a fiecărui brick
-                int worldY = i * brickHeight;  // Calculăm poziția Y a fiecărui brick
+                int worldX = (j+1) * brickWidth;  // Calculăm poziția X a fiecărui brick
+                int worldY = (i-4) * brickHeight;  // Calculăm poziția Y a fiecărui brick
                // System.out.println(worldX);
                // System.out.println(worldY);
                 hartaBricksObiecte[i][j].draw(g2,worldX,worldY);
