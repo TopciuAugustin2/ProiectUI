@@ -8,7 +8,7 @@ public class Wall extends Entity {
 
     public int height;
     public int width;
-
+    public Rectangle solidArea;
     public Wall(int X,int Y,int Width,int Height)
     {
         this.x=X;

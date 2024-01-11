@@ -21,11 +21,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenHeight = tileSize * maxScreenRow;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public KeyHandler keyH = new KeyHandler(this);
-    public CollisionChecker cChecker = new CollisionChecker(this);
+
 
     Wall leftWall,topWall,rightWall;
-
-
 
     Thread gameThread;
     Player player;
@@ -62,11 +60,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.player = new Player(this,keyH);
-        this.ball = new Ball(this,player);
+        this.ball = new Ball(this);
         this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
-
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
 
     }
@@ -76,18 +73,17 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void restart() {
-        player.setDefaultValues();
+        player.resetState();
         this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.player = new Player(this,keyH);
-        this.ball = new Ball(this,player);
+        this.ball = new Ball(this);
         this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
-
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
 
     }
@@ -135,11 +131,15 @@ public class GamePanel extends JPanel implements Runnable{
             player.update();
             ball.update();
             brickPlacer.update();
+            //checkCollision();
+
+
         }
     }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+
         Graphics2D g2 = (Graphics2D) g;
         BufferedImage bk;
 
@@ -153,13 +153,12 @@ public class GamePanel extends JPanel implements Runnable{
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            g2.drawImage(bk,0,0,window.getWidth(),window.getHeight(),null);
 
-
+            g2.drawImage(bk,0,0,(int)screenSize.getWidth(),(int)screenSize.getHeight(),null);
 
             player.draw(g2);
-            ball.draw(g2);
 
+            ball.draw(g2);
 
             brickPlacer.draw(g2);
             topWall.draw(g2);
@@ -173,4 +172,96 @@ public class GamePanel extends JPanel implements Runnable{
 
         g2.dispose();
     }
+
+   private void checkCollision() {
+
+        if (ball.getRect().getMaxY() > this.screenSize.getHeight()-this.screenSize.getHeight()/8) {
+
+            gameState=gameOverState;
+        }
+
+        if(brickPlacer.noOfBreakableBricks == 0)
+        {
+            gameState=gameOverState;
+        }
+}
+//
+//        if ((ball.solidArea).intersects(player.solidArea)) {
+//
+//            int paddleLPos = (int) player.solidArea.getMinX();
+//            int ballLPos = (int) ball.solidArea.getMinX();
+//
+//            int first = paddleLPos + 8;
+//            int second = paddleLPos + 16;
+//            int third = paddleLPos + 24;
+//            int fourth = paddleLPos + 32;
+//
+//            if (ballLPos < first) {
+//
+//                ball.setXDir(-1);
+//                ball.setYDir(-1);
+//            }
+//
+//            if (ballLPos >= first && ballLPos < second) {
+//
+//                ball.setXDir(-1);
+//                ball.setYDir(-1 * ball.getYDir());
+//            }
+//
+//            if (ballLPos >= second && ballLPos < third) {
+//
+//                ball.setXDir(0);
+//                ball.setYDir(-1);
+//            }
+//
+//            if (ballLPos >= third && ballLPos < fourth) {
+//
+//                ball.setXDir(1);
+//                ball.setYDir(-1 * ball.getYDir());
+//            }
+//
+//            if (ballLPos > fourth) {
+//
+//                ball.setXDir(1);
+//                ball.setYDir(-1);
+//            }
+//        }
+//
+//        for (int i = 0; i < brickPlacer.noOfBreakableBricks; i++) {
+//            for (int j = 0; j < brickPlacer.noOfBreakableBricks; j++)
+//            if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].solidArea)) {
+//
+//                int ballLeft = (int) ball.getRect().getMinX();
+//                int ballHeight = (int) ball.getRect().getHeight();
+//                int ballWidth = (int) ball.getRect().getWidth();
+//                int ballTop = (int) ball.getRect().getMinY();
+//
+//                var pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
+//                var pointLeft = new Point(ballLeft - 1, ballTop);
+//                var pointTop = new Point(ballLeft, ballTop - 1);
+//                var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
+//
+//                if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
+//
+//                    if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointRight)) {
+//
+//                        ball.setXDir(-1);
+//                    } else if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointLeft)) {
+//
+//                        ball.setXDir(1);
+//                    }
+//
+//                    if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointTop)) {
+//
+//                        ball.setYDir(1);
+//                    } else if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointBottom)) {
+//
+//                        ball.setYDir(-1);
+//                    }
+//
+//                    brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
+//                }
+//            }
+//        }
+//    }
 }

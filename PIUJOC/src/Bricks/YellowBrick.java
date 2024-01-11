@@ -11,7 +11,7 @@ public class YellowBrick extends Brick {
 
 
     Ball ball;
-
+    Rectangle solidArea;
     public YellowBrick(Ball Ball)
     {
         this.ball=Ball;
@@ -19,10 +19,11 @@ public class YellowBrick extends Brick {
         this.diameter=48*3;
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
         getBrickSkinImage();
+        this.destroyed=false;
     }
     public void update()
     {
-        if(ball.solidArea.intersects(this.solidArea))
+        if(ball.getRect().intersects(this.solidArea))
         {
             getHit();
         }
@@ -62,5 +63,15 @@ public class YellowBrick extends Brick {
             e.printStackTrace();
         }
 
+    }
+    @Override
+    public boolean isDestroyed() {
+
+        return destroyed;
+    }
+    @Override
+    public void setDestroyed(boolean val) {
+
+        destroyed = val;
     }
 }

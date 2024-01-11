@@ -27,6 +27,16 @@ import java.awt.*;
         }
 
         @Override
+        public boolean isDestroyed() {
+            return false;
+        }
+
+        @Override
+        public void setDestroyed(boolean val) {
+
+        }
+
+        @Override
     public void draw(Graphics2D g2,int a,int b ) {
 
     }

@@ -11,9 +11,10 @@ import java.io.IOException;
 public class BlueBrick extends Brick {
 
     Ball ball;
-
+    Rectangle solidArea;
     public BlueBrick( Ball Ball)
     {
+        this.destroyed=false;
         this.ball=Ball;
         this.hp=1;
         this.diameter=48*3;
@@ -22,12 +23,12 @@ public class BlueBrick extends Brick {
     }
     public void update()
     {
-        if(ball.solidArea.intersects(this.solidArea))
+        if(ball.getRect().intersects(this.solidArea))
         {
-            System.out.println("hit");
+            //System.out.println("hit");
             getHit();
         }
-        System.out.println("no hit");
+        //System.out.println("no hit");
 
     }
     @Override
@@ -49,6 +50,16 @@ public class BlueBrick extends Brick {
         //g2.fillRect(solidArea.x, solidArea.y, diameter,diameter/3-20);
         g2.drawImage(skin,a,b,48*3,48-20,null);
 
+    }
+    @Override
+    public boolean isDestroyed() {
+
+        return destroyed;
+    }
+    @Override
+    public void setDestroyed(boolean val) {
+
+        destroyed = val;
     }
 
     @Override

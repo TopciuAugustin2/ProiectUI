@@ -14,7 +14,8 @@ public abstract class Brick extends Entity {
     public abstract void Destroy();
     public abstract void getBrickSkinImage();
     public abstract void update();
-
+    public abstract boolean isDestroyed();
+    public abstract void setDestroyed(boolean val);
     public abstract void draw(Graphics2D g2,int a,int b);
 
 }
