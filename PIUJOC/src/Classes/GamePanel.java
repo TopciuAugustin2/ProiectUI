@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
 
-        this.brickPlacer = new BrickPlacer(this,this.ball);
+        this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
 
     }
 
@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
 
-        this.brickPlacer = new BrickPlacer(this,this.ball);
+        this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
 
     }
 

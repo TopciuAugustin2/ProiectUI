@@ -17,16 +17,17 @@ public class BrickPlacer {
     GamePanel gp;
     public Brick[] bricks;
     public Brick[][] hartaBricksObiecte;
-
+    Dimension screensize;
     int maxWorldCol = 13;
     int maxWorldRow = 12;
 
     Ball ball;
 
-    public BrickPlacer(GamePanel gp,Ball ball) {
+    public BrickPlacer(GamePanel gp,Ball ball,Dimension screensize) {
         this.gp = gp;
         this.ball=ball;
         this.hartaBricksObiecte = new Brick[12][13];
+        this.screensize = screensize;
         loadBrickModel("/Bricks/map1.txt");
 //        hartaBricks = new int[43][14];
 //        hartaBricksObiecte = new Brick[43][14];
@@ -91,22 +92,36 @@ public class BrickPlacer {
 
     public void draw(Graphics2D g2) {
 
-        int brickWidth = 1920 / 5;  // Calculăm lățimea fiecărui brick
-        int brickHeight = 1200 / 12;  // Calculăm înălțimea fiecărui brick
+//        int brickWidth = screensize.width / 15;  // Calculăm lățimea fiecărui brick
+//        int brickHeight = screensize.height / 25;  // Calculăm înălțimea fiecărui brick
+//
+//
+//        for(int i=0;i<12;i++)
+//        {
+//            for(int j=0;j<13;j++)
+//            {
+//                int worldX = (j+1) * brickWidth;  // Calculăm poziția X a fiecărui brick
+//                int worldY = (i) * brickHeight;  // Calculăm poziția Y a fiecărui brick
+//               // System.out.println(worldX);
+//               // System.out.println(worldY);
+//                hartaBricksObiecte[i][j].draw(g2,worldX,worldY);
+//            }
+//            //System.out.println("\n");
+//        }
+        int cols=13;
+        int rows=12;
+        int brickWidth = screensize.width / cols;
+        int brickHeight = screensize.height / rows;
 
-        for(int i=0;i<12;i++)
-        {
-            for(int j=0;j<13;j++)
-            {
-                int worldX = (j+1) * brickWidth;  // Calculăm poziția X a fiecărui brick
-                int worldY = (i-4) * brickHeight;  // Calculăm poziția Y a fiecărui brick
-               // System.out.println(worldX);
-               // System.out.println(worldY);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                int worldX = j * brickWidth;
+                int worldY = i * brickHeight;
                 hartaBricksObiecte[i][j].draw(g2,worldX,worldY);
+                }
             }
-            //System.out.println("\n");
         }
-    }
+
 
     public void update()
     {
