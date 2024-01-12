@@ -39,6 +39,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int gameOverState = 3;
     public final int wonState = 4;
+    public final int level2 = 5;
+    public final int level3 = 6;
 
     //FPSJFrame frame;
     int FPS =60;
@@ -66,7 +68,14 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
-
+        if(gameState == level2) {
+            this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map2");
+            //gameState = playState;
+        }
+        if(gameState == level3) {
+            this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map3");
+            //gameState = playState;
+        }
     }
 
     public void setupGame() {
@@ -86,7 +95,14 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
-
+        if(gameState == level2) {
+            this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map2");
+            //gameState = playState;
+        }
+        if(gameState == level3) {
+            this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map3");
+            //gameState = playState;
+        }
     }
 
     @Override
@@ -128,6 +144,24 @@ public class GamePanel extends JPanel implements Runnable{
     public void update()
     {
         if(gameState==playState)
+        {
+            player.update();
+            ball.update();
+            brickPlacer.update();
+            checkCollision();
+
+
+        }
+        if(gameState==level2)
+        {
+            player.update();
+            ball.update();
+            brickPlacer.update();
+            checkCollision();
+
+
+        }
+        if(gameState==level3)
         {
             player.update();
             ball.update();

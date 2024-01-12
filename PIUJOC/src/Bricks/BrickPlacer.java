@@ -33,6 +33,15 @@ public class BrickPlacer {
 
     }
 
+    public BrickPlacer(GamePanel gp,Ball ball,Dimension screensize, String map) {
+        this.gp = gp;
+        this.ball=ball;
+        this.hartaBricksObiecte = new Brick[12][13];
+        this.screensize = screensize;
+        loadBrickModel("/Bricks/" + map + ".txt");
+
+    }
+
 
     public void loadBrickModel(String filepath) {
         //12 pe 13
