@@ -45,22 +45,23 @@ public class Ball extends Entity {
     public void update() {
 
         x += xdir;
+
         y += ydir;
-
-        if (x == 0) {
-
-            setXDir(speed);
-        }
-
-        if (x == screenSize.width) {
-
-            setXDir(-speed);
-        }
-
-        if (y == 0) {
-
-            setYDir(speed);
-        }
+//
+//        if (x == 0) {
+//
+//            setXDir(speed);
+//        }
+//
+//        if (x == screenSize.width) {
+//
+//            setXDir(-speed);
+//        }
+//
+//        if (y == 0) {
+//
+//            setYDir(speed);
+//        }
     }
 
 

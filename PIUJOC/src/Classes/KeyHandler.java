@@ -92,6 +92,31 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
+        if(gp.gameState == gp.wonState) {
+            if(key == KeyEvent.VK_W) {
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = 1;
+                }
+            }
+            if(key == KeyEvent.VK_S) {
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 1) {
+                    gp.ui.commandNum = 0;
+                }
+            }
+            if(key == KeyEvent.VK_ENTER) {
+                if(gp.ui.commandNum == 0) {
+                    //aici e retry
+                    gp.restart();
+                    gp.gameState = gp.playState;
+                }
+                else if(gp.ui.commandNum == 1) {
+                    gp.gameState = gp.titleState;
+                    gp.restart();
+                }
+            }
+        }
     }
 
     @Override

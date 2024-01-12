@@ -29,6 +29,7 @@ public class UI {
     public void draw(Graphics2D g2)
     {
         if(gameFinished == true) {
+            gp.gameState= gp.wonState;
             g2.setFont(arial_40);
             g2.setColor(Color.black);
 
@@ -69,6 +70,10 @@ public class UI {
         if(gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
 
+        }
+        if(gp.gameState == gp.wonState)
+        {
+            drawWonState();
         }
     }
 
@@ -167,6 +172,49 @@ public class UI {
         int y = gp.screenHeight/2;
 
         g2.drawString(text, x, y);
+    }
+
+    public void drawWonState()
+    {
+        g2.setColor(new Color(0,0,0,150));
+        g2.fillRect(0,0,screenSize.width,screenSize.width);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,110f));
+
+        text = "You Won!";
+        //Shadow
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y =gp.tileSize * 3;
+        g2.drawString(text, x, y);
+        //Main
+        g2.setColor(Color.white);
+        g2.drawString(text,x-4, y-4);
+
+
+        //Retry
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y = y + gp.tileSize * 3;
+        g2.drawString(text, x, y);
+        if(commandNum == 0) {
+            g2.drawString(">", x-40, y);
+        }
+
+        //Back to the title screen
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y = y + 60;
+        g2.drawString(text, x, y);
+        if(commandNum == 1) {
+            g2.drawString(">", x-40, y);
+        }
+
+
     }
 
     public int getXforCenteredText(String text)

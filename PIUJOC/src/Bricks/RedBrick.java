@@ -16,7 +16,7 @@ public class RedBrick extends Brick {
     public RedBrick(Ball Ball)
     {
         this.ball=Ball;
-        this.hp=1;
+        this.hp=4;
         this.diameter=48*3;
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
         getBrickSkinImage();

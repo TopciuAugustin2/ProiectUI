@@ -26,6 +26,6 @@ public class Wall extends Entity {
 
     @Override
     public Rectangle getRect() {
-        return null;
+        return new Rectangle(solidArea.x,solidArea.y, solidArea.width,solidArea.height);
     }
 }

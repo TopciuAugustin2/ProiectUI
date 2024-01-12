@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int playState = 1;
     public final int pauseState = 2;
     public final int gameOverState = 3;
+    public final int wonState = 4;
 
     //FPSJFrame frame;
     int FPS =60;
@@ -180,6 +181,24 @@ public class GamePanel extends JPanel implements Runnable{
             gameState=gameOverState;
         }
 
+
+       //
+       if(ball.getRect().intersects(leftWall.getRect()))
+       {
+           ball.setXDir(ball.speed);
+       }
+       //
+       if(ball.getRect().intersects(rightWall.getRect()))
+       {
+           ball.setXDir(-ball.speed);
+       }
+       //
+       if(ball.getRect().intersects(topWall.getRect()))
+       {
+           ball.setYDir(ball.speed);
+       }
+
+
        for(int i=0,contor=0;i<12;i++) {
            for (int j = 0; j < 13; j++) {
 
@@ -191,7 +210,7 @@ public class GamePanel extends JPanel implements Runnable{
 
                if (contor == 12*13) {
 
-                   gameState=gameOverState;
+                   gameState=wonState;
                }
            }
        }
