@@ -3,7 +3,7 @@ package Parents;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
- public class Entity {
+ public abstract class Entity {
 
     public int x,y;
     public int dmg;
@@ -50,11 +50,6 @@ import java.awt.image.BufferedImage;
          return skin;
      }
 
-     public Rectangle getRect() {
-
-         return new Rectangle(x, y, skin.getWidth(), skin.getHeight());
-     }
-
 
      public void getImageDimensions() {
 
@@ -63,8 +58,5 @@ import java.awt.image.BufferedImage;
      }
 
 
-
-
-
-
-}
+     public abstract Rectangle getRect();
+ }

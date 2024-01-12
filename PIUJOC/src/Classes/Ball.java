@@ -36,22 +36,25 @@ public class Ball extends Entity {
             e.printStackTrace();
         }
     }
+    @Override
+    public Rectangle getRect() {
 
+        return new Rectangle(x, y, skin.getWidth()*2, skin.getHeight()*2);
+    }
 
     public void update() {
 
-        x -= xdir;
-        y -= ydir;
+        x += xdir;
+        y += ydir;
 
         if (x == 0) {
 
-            setXDir(speed);
+            setXDir(1);
         }
 
         if (x == screenSize.width - imageWidth) {
 
-            System.out.println(imageWidth);
-            setXDir(-speed);
+            setXDir(-1);
         }
 
         if (y == 0) {

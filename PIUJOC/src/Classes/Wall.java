@@ -23,4 +23,9 @@ public class Wall extends Entity {
         g2.draw(solidArea);
         g2.fillRect(solidArea.x,solidArea.y, solidArea.width,solidArea.height);
     }
+
+    @Override
+    public Rectangle getRect() {
+        return null;
+    }
 }

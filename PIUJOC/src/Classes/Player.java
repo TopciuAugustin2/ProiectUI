@@ -55,7 +55,7 @@ public class Player extends Entity {
     {
         //g2.drawImage(skin,x,y,gp.tileSize*3,gp.tileSize-20,null);
         g2.drawImage(skin, x, y,
-                skin.getWidth()*9, skin.getHeight()*3-20, null);
+                skin.getWidth()*9+1, skin.getHeight()*3-20, null);
 
     }
    public void resetState() {
@@ -63,5 +63,11 @@ public class Player extends Entity {
         x=(int)screenSize.getWidth()/2;
         y=(int)screenSize.getHeight()-200;
         speed=10;
+    }
+
+
+    @Override
+    public Rectangle getRect() {
+        return new Rectangle(x, y, skin.getWidth()*9+1, skin.getHeight()*3-20);
     }
 }

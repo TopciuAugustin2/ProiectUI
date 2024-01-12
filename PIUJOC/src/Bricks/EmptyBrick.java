@@ -40,4 +40,11 @@ import java.awt.*;
     public void draw(Graphics2D g2,int a,int b ) {
 
     }
-}
+
+        @Override
+        public Rectangle getRect() {
+            return null;
+        }
+
+
+    }

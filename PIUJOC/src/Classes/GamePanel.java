@@ -131,7 +131,7 @@ public class GamePanel extends JPanel implements Runnable{
             player.update();
             ball.update();
             brickPlacer.update();
-            //checkCollision();
+            checkCollision();
 
 
         }
@@ -175,7 +175,7 @@ public class GamePanel extends JPanel implements Runnable{
 
    private void checkCollision() {
 
-        if (ball.getRect().getMaxY() > this.screenSize.getHeight()-this.screenSize.getHeight()/8) {
+        if (ball.getRect().getMaxY() > player.getRect().getMaxY()+100) {
 
             gameState=gameOverState;
         }
@@ -184,84 +184,96 @@ public class GamePanel extends JPanel implements Runnable{
         {
             gameState=gameOverState;
         }
-}
-//
-//        if ((ball.solidArea).intersects(player.solidArea)) {
-//
-//            int paddleLPos = (int) player.solidArea.getMinX();
-//            int ballLPos = (int) ball.solidArea.getMinX();
-//
-//            int first = paddleLPos + 8;
-//            int second = paddleLPos + 16;
-//            int third = paddleLPos + 24;
-//            int fourth = paddleLPos + 32;
-//
-//            if (ballLPos < first) {
-//
-//                ball.setXDir(-1);
-//                ball.setYDir(-1);
-//            }
-//
-//            if (ballLPos >= first && ballLPos < second) {
-//
-//                ball.setXDir(-1);
-//                ball.setYDir(-1 * ball.getYDir());
-//            }
-//
-//            if (ballLPos >= second && ballLPos < third) {
-//
-//                ball.setXDir(0);
-//                ball.setYDir(-1);
-//            }
-//
-//            if (ballLPos >= third && ballLPos < fourth) {
-//
-//                ball.setXDir(1);
-//                ball.setYDir(-1 * ball.getYDir());
-//            }
-//
-//            if (ballLPos > fourth) {
-//
-//                ball.setXDir(1);
-//                ball.setYDir(-1);
-//            }
-//        }
-//
-//        for (int i = 0; i < brickPlacer.noOfBreakableBricks; i++) {
-//            for (int j = 0; j < brickPlacer.noOfBreakableBricks; j++)
-//            if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].solidArea)) {
-//
-//                int ballLeft = (int) ball.getRect().getMinX();
-//                int ballHeight = (int) ball.getRect().getHeight();
-//                int ballWidth = (int) ball.getRect().getWidth();
-//                int ballTop = (int) ball.getRect().getMinY();
-//
-//                var pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
-//                var pointLeft = new Point(ballLeft - 1, ballTop);
-//                var pointTop = new Point(ballLeft, ballTop - 1);
-//                var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
-//
-//                if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
-//
-//                    if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointRight)) {
-//
-//                        ball.setXDir(-1);
-//                    } else if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointLeft)) {
-//
-//                        ball.setXDir(1);
-//                    }
-//
-//                    if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointTop)) {
-//
-//                        ball.setYDir(1);
-//                    } else if (brickPlacer.hartaBricksObiecte[i][j].solidArea.contains(pointBottom)) {
-//
-//                        ball.setYDir(-1);
-//                    }
-//
-//                    brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
-//                }
-//            }
-//        }
-//    }
+
+
+        if (ball.getRect().intersects(player.getRect())) {
+
+            int paddleLPos = (int) player.getRect().getMinX();
+            int ballLPos = (int) ball.getRect().getMinX();
+
+
+            //System.out.println("paddle pos x:" + paddleLPos);
+            //System.out.println("ball pos x:" + ballLPos);
+
+//            System.out.println("p height: "+player.getRect().getHeight());
+//            System.out.println("p width: "+player.getRect().getWidth());
+//            System.out.println("p1 height: "+player.skin.getHeight());
+//            System.out.println("p1 width: "+player.skin.getWidth());
+            System.out.println("min x"+player.getRect().getMinX());
+            System.out.println("max x"+player.getRect().getMaxX());
+
+
+            int first = paddleLPos + 29;
+            int second = paddleLPos + 29*2;
+            int third = paddleLPos + 29*3;
+            int fourth = paddleLPos + 29*4;
+
+            if (ballLPos < first) {
+
+                ball.setXDir(-1);
+                ball.setYDir(-1);
+            }
+
+            if (ballLPos >= first && ballLPos < second) {
+
+                ball.setXDir(-1);
+                ball.setYDir(-1 * ball.getYDir());
+            }
+
+            if (ballLPos >= second && ballLPos < third) {
+
+                ball.setXDir(0);
+                ball.setYDir(-1);
+            }
+
+            if (ballLPos >= third && ballLPos < fourth) {
+
+                ball.setXDir(1);
+                ball.setYDir(-1 * ball.getYDir());
+            }
+
+            if (ballLPos > fourth) {
+
+                ball.setXDir(1);
+                ball.setYDir(-1);
+            }
+        }
+
+        for (int i = 0; i < brickPlacer.noOfBreakableBricks; i++) {
+            for (int j = 0; j < brickPlacer.noOfBreakableBricks; j++)
+            if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].getRect())) {
+
+                int ballLeft = (int) ball.getRect().getMinX();
+                int ballHeight = (int) ball.getRect().getHeight();
+                int ballWidth = (int) ball.getRect().getWidth();
+                int ballTop = (int) ball.getRect().getMinY();
+
+                var pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
+                var pointLeft = new Point(ballLeft - 1, ballTop);
+                var pointTop = new Point(ballLeft, ballTop - 1);
+                var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
+
+                if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
+
+                    if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointRight)) {
+
+                        ball.setXDir(-1);
+                    } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
+
+                        ball.setXDir(1);
+                    }
+
+                    if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointTop)) {
+
+                        ball.setYDir(1);
+                    } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
+
+                        ball.setYDir(-1);
+                    }
+
+                    brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
+                }
+            }
+        }
+    }
 }

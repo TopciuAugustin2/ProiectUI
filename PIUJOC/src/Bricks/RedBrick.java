@@ -11,6 +11,8 @@ public class RedBrick extends Brick {
 
     Ball ball;
     Rectangle solidArea;
+    int a;
+    int b;
     public RedBrick(Ball Ball)
     {
         this.ball=Ball;
@@ -41,9 +43,13 @@ public class RedBrick extends Brick {
     @Override
     public void draw(Graphics2D g2,int a,int b)
     {
-        g2.draw(solidArea);
+        this.a=a;
+        this.b=b;
+        solidArea= new Rectangle(a, b,diameter,diameter/3-20);
         g2.drawImage(skin,a,b,48*3,48-20,null);
+
     }
+
 
 
     @Override
@@ -72,5 +78,10 @@ public class RedBrick extends Brick {
     public void setDestroyed(boolean val) {
 
         destroyed = val;
+    }
+    @Override
+    public Rectangle getRect() {
+
+        return new Rectangle(x, y, 48*3,48-20);
     }
 }

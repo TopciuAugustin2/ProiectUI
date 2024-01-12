@@ -12,6 +12,8 @@ public class BlueBrick extends Brick {
 
     Ball ball;
     Rectangle solidArea;
+    int a;
+    int b;
     public BlueBrick( Ball Ball)
     {
         this.destroyed=false;
@@ -45,12 +47,20 @@ public class BlueBrick extends Brick {
     @Override
     public void draw(Graphics2D g2,int a,int b)
     {
+        this.a=a;
+        this.b=b;
         solidArea= new Rectangle(a, b,diameter,diameter/3-20);
         //g2.setColor(Color.RED);
         //g2.fillRect(solidArea.x, solidArea.y, diameter,diameter/3-20);
         g2.drawImage(skin,a,b,48*3,48-20,null);
 
     }
+
+    @Override
+    public Rectangle getRect() {
+        return new Rectangle(a,b,48*3,48-20);
+    }
+
     @Override
     public boolean isDestroyed() {
 
@@ -79,4 +89,5 @@ public class BlueBrick extends Brick {
             }
 
     }
+
 }

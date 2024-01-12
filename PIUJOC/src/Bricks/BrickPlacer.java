@@ -34,13 +34,6 @@ public class BrickPlacer {
 
     }
 
-//    public void fillBricksArray() {
-//        bricks[0] = new EmptyBrick();
-//        bricks[1] = new YellowBrick(ball);
-//        bricks[2] = new RedBrick(ball);
-//        bricks[3] = new BlueBrick(ball);
-//    }
-
     public void loadBrickModel(String filepath) {
         //12 pe 13
 
@@ -95,22 +88,6 @@ public class BrickPlacer {
 
     public void draw(Graphics2D g2) {
 
-//        int brickWidth = screensize.width / 15;  // Calculăm lățimea fiecărui brick
-//        int brickHeight = screensize.height / 25;  // Calculăm înălțimea fiecărui brick
-//
-//
-//        for(int i=0;i<12;i++)
-//        {
-//            for(int j=0;j<13;j++)
-//            {
-//                int worldX = (j+1) * brickWidth;  // Calculăm poziția X a fiecărui brick
-//                int worldY = (i) * brickHeight;  // Calculăm poziția Y a fiecărui brick
-//               // System.out.println(worldX);
-//               // System.out.println(worldY);
-//                hartaBricksObiecte[i][j].draw(g2,worldX,worldY);
-//            }
-//            //System.out.println("\n");
-//        }
         int cols=13;
         int rows=12;
         int brickWidth = screensize.width / cols;
@@ -137,7 +114,6 @@ public class BrickPlacer {
                 {
                     noOfBreakableBricks--;
                 }
-                //System.out.println(hartaBricksObiecte[i][j].solidArea);
             }
 
         }

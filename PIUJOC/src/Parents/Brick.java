@@ -18,4 +18,5 @@ public abstract class Brick extends Entity {
     public abstract void setDestroyed(boolean val);
     public abstract void draw(Graphics2D g2,int a,int b);
 
+    public abstract Rectangle getRect();
 }
