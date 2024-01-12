@@ -19,8 +19,8 @@ public class Ball extends Entity {
     public Ball(GamePanel GP) {
         this.gp = GP;
         this.speed=5;
-        this.xdir = 1;
-        this.ydir = -1;
+        this.xdir = 5;
+        this.ydir = -5;
         this.dmg = 1;
 
         getBallImage();
@@ -49,17 +49,17 @@ public class Ball extends Entity {
 
         if (x == 0) {
 
-            setXDir(1);
+            setXDir(speed);
         }
 
-        if (x == screenSize.width - imageWidth) {
+        if (x == screenSize.width) {
 
-            setXDir(-1);
+            setXDir(-speed);
         }
 
         if (y == 0) {
 
-            setYDir(1);
+            setYDir(speed);
         }
     }
 

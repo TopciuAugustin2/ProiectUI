@@ -210,32 +210,32 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (ballLPos < first) {
 
-                ball.setXDir(-1);
-                ball.setYDir(-1);
+                ball.setXDir(-5);
+                ball.setYDir(-5);
             }
 
             if (ballLPos >= first && ballLPos < second) {
 
-                ball.setXDir(-1);
+                ball.setXDir(-5);
                 ball.setYDir(-1 * ball.getYDir());
             }
 
             if (ballLPos >= second && ballLPos < third) {
 
                 ball.setXDir(0);
-                ball.setYDir(-1);
+                ball.setYDir(-5);
             }
 
             if (ballLPos >= third && ballLPos < fourth) {
 
-                ball.setXDir(1);
+                ball.setXDir(5);
                 ball.setYDir(-1 * ball.getYDir());
             }
 
             if (ballLPos > fourth) {
 
-                ball.setXDir(1);
-                ball.setYDir(-1);
+                ball.setXDir(5);
+                ball.setYDir(-5);
             }
         }
 
@@ -257,18 +257,18 @@ public class GamePanel extends JPanel implements Runnable{
 
                     if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointRight)) {
 
-                        ball.setXDir(-1);
+                        ball.setXDir(-5);
                     } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
 
-                        ball.setXDir(1);
+                        ball.setXDir(5);
                     }
 
                     if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointTop)) {
 
-                        ball.setYDir(1);
+                        ball.setYDir(5);
                     } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
 
-                        ball.setYDir(-1);
+                        ball.setYDir(-5);
                     }
 
                     brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
