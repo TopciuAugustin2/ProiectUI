@@ -6,6 +6,7 @@ import Parents.Brick;
 import Bricks.BlueBrick;
 import Bricks.YellowBrick;
 import Bricks.RedBrick;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -60,7 +61,7 @@ public class BrickPlacer {
                     String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
-                    System.out.println("a["+row+"]["+col+"] "+ num);
+                    //System.out.println("a["+row+"]["+col+"] "+ num);
                     switch (num) {
                         case 0 -> {
                             hartaBricksObiecte[row][col] = new EmptyBrick(ball);
@@ -68,11 +69,11 @@ public class BrickPlacer {
                         }
                         case 1 -> {
                             hartaBricksObiecte[row][col] = new YellowBrick(ball);
-
+                            System.out.println("Yellow brick added");
                         }
                         case 2 -> {
                             hartaBricksObiecte[row][col] = new RedBrick(ball);
-
+                            System.out.println("Red brick added");
                         }
                         case 3 -> {
                             hartaBricksObiecte[row][col] = new BlueBrick(ball);
