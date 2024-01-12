@@ -15,11 +15,12 @@ public class RedBrick extends Brick {
     int b;
     public RedBrick(Ball Ball)
     {
+        getBrickSkinImage();
         this.ball=Ball;
         this.hp=4;
         this.diameter=48*3;
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
-        getBrickSkinImage();
+        
         
     }
     public void update()

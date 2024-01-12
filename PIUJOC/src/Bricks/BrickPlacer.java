@@ -69,11 +69,11 @@ public class BrickPlacer {
                         }
                         case 1 -> {
                             hartaBricksObiecte[row][col] = new YellowBrick(ball);
-                            System.out.println("Yellow brick added");
+                            //System.out.println("Yellow brick added");
                         }
                         case 2 -> {
                             hartaBricksObiecte[row][col] = new RedBrick(ball);
-                            System.out.println("Red brick added");
+                            //System.out.println("Red brick added");
                         }
                         case 3 -> {
                             hartaBricksObiecte[row][col] = new BlueBrick(ball);

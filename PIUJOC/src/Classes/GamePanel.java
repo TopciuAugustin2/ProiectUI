@@ -316,7 +316,7 @@ public class GamePanel extends JPanel implements Runnable{
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 13; j++) {
                 if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].getRect())) {
-                    System.out.println("hit"+i +" "+j);
+                    //System.out.println("hit"+i +" "+j);
 
                     int ballLeft = (int) ball.getRect().getMinX();
                     int ballHeight = (int) ball.getRect().getHeight();
