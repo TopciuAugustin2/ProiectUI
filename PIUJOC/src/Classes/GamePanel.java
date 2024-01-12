@@ -180,10 +180,22 @@ public class GamePanel extends JPanel implements Runnable{
             gameState=gameOverState;
         }
 
-        if(brickPlacer.noOfBreakableBricks == 0)
-        {
-            gameState=gameOverState;
-        }
+       for(int i=0,contor=0;i<12;i++) {
+           for (int j = 0; j < 13; j++) {
+
+
+               if (brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
+
+                   contor++;
+               }
+
+               if (contor == 12*13) {
+
+                   gameState=gameOverState;
+               }
+           }
+       }
+
 
 
         if (ball.getRect().intersects(player.getRect())) {
@@ -239,39 +251,43 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
 
-        for (int i = 0; i < brickPlacer.noOfBreakableBricks; i++) {
-            for (int j = 0; j < brickPlacer.noOfBreakableBricks; j++)
-            if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].getRect())) {
+       //System.out.println(brickPlacer.noOfBreakableBricks);
 
-                int ballLeft = (int) ball.getRect().getMinX();
-                int ballHeight = (int) ball.getRect().getHeight();
-                int ballWidth = (int) ball.getRect().getWidth();
-                int ballTop = (int) ball.getRect().getMinY();
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 13; j++) {
+                if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].getRect())) {
+                    System.out.println("hit");
 
-                var pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
-                var pointLeft = new Point(ballLeft - 1, ballTop);
-                var pointTop = new Point(ballLeft, ballTop - 1);
-                var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
+                    int ballLeft = (int) ball.getRect().getMinX();
+                    int ballHeight = (int) ball.getRect().getHeight();
+                    int ballWidth = (int) ball.getRect().getWidth();
+                    int ballTop = (int) ball.getRect().getMinY();
 
-                if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
+                    var pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
+                    var pointLeft = new Point(ballLeft - 1, ballTop);
+                    var pointTop = new Point(ballLeft, ballTop - 1);
+                    var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
 
-                    if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointRight)) {
+                    if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
 
-                        ball.setXDir(-5);
-                    } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
+                        if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointRight)) {
 
-                        ball.setXDir(5);
+                            ball.setXDir(-5);
+                        } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
+
+                            ball.setXDir(5);
+                        }
+
+                        if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointTop)) {
+
+                            ball.setYDir(5);
+                        } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
+
+                            ball.setYDir(-5);
+                        }
+
+                        brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
                     }
-
-                    if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointTop)) {
-
-                        ball.setYDir(5);
-                    } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
-
-                        ball.setYDir(-5);
-                    }
-
-                    brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
                 }
             }
         }

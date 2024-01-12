@@ -50,8 +50,6 @@ public class BlueBrick extends Brick {
         this.a=a;
         this.b=b;
         solidArea= new Rectangle(a, b,diameter,diameter/3-20);
-        //g2.setColor(Color.RED);
-        //g2.fillRect(solidArea.x, solidArea.y, diameter,diameter/3-20);
         g2.drawImage(skin,a,b,48*3,48-20,null);
 
     }

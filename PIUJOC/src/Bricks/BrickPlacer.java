@@ -21,7 +21,7 @@ public class BrickPlacer {
     int maxWorldCol = 13;
     int maxWorldRow = 12;
 
-    public int noOfBreakableBricks=0;
+    //public int noOfBreakableBricks;
     Ball ball;
 
     public BrickPlacer(GamePanel gp,Ball ball,Dimension screensize) {
@@ -31,8 +31,8 @@ public class BrickPlacer {
         this.screensize = screensize;
         loadBrickModel("/Bricks/map1.txt");
 
-
     }
+
 
     public void loadBrickModel(String filepath) {
         //12 pe 13
@@ -51,22 +51,23 @@ public class BrickPlacer {
                     String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
+                    System.out.println("a["+row+"]["+col+"] "+ num);
                     switch (num) {
                         case 0 -> {
-                            hartaBricksObiecte[row][col] = new EmptyBrick();
+                            hartaBricksObiecte[row][col] = new EmptyBrick(ball);
 
                         }
                         case 1 -> {
                             hartaBricksObiecte[row][col] = new YellowBrick(ball);
-                            noOfBreakableBricks++;
+
                         }
                         case 2 -> {
                             hartaBricksObiecte[row][col] = new RedBrick(ball);
-                            noOfBreakableBricks++;
+
                         }
                         case 3 -> {
                             hartaBricksObiecte[row][col] = new BlueBrick(ball);
-                            noOfBreakableBricks++;
+
                         }
                     }
                     col++;
@@ -110,10 +111,6 @@ public class BrickPlacer {
             for(int j=0;j<13;j++)
             {
                 hartaBricksObiecte[i][j].update();
-                if(hartaBricksObiecte[i][j].hp<=0)
-                {
-                    noOfBreakableBricks--;
-                }
             }
 
         }
