@@ -67,13 +67,14 @@ public class GamePanel extends JPanel implements Runnable{
         this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
-        if(gameState == playState)
-            this.brickPlacer = new BrickPlacer(this,this.ball,screenSize, "map1");
+        this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
         if(gameState == level2) {
             this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map2");
+            //gameState = playState;
         }
         if(gameState == level3) {
             this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map3");
+            //gameState = playState;
         }
     }
 
@@ -93,13 +94,14 @@ public class GamePanel extends JPanel implements Runnable{
         this.rightWall=new Wall((int)screenSize.getWidth()-30,0,30,(int)screenSize.getHeight());
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
-        if(gameState == playState)
-            this.brickPlacer = new BrickPlacer(this,this.ball,screenSize, "map1");
+        this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
         if(gameState == level2) {
             this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map2");
+            //gameState = playState;
         }
         if(gameState == level3) {
             this.brickPlacer = new BrickPlacer(this, this.ball, screenSize, "map3");
+            //gameState = playState;
         }
     }
 
@@ -145,10 +147,7 @@ public class GamePanel extends JPanel implements Runnable{
         {
             player.update();
             ball.update();
-            if(brickPlacer == null)
-                this.brickPlacer = new BrickPlacer(this,this.ball,screenSize, "map1");
-            else
-                brickPlacer.update();
+            brickPlacer.update();
             checkCollision();
 
 
@@ -157,10 +156,7 @@ public class GamePanel extends JPanel implements Runnable{
         {
             player.update();
             ball.update();
-            if(brickPlacer == null)
-                this.brickPlacer = new BrickPlacer(this,this.ball,screenSize, "map2");
-            else
-                brickPlacer.update();
+            brickPlacer.update();
             checkCollision();
 
 
@@ -169,10 +165,7 @@ public class GamePanel extends JPanel implements Runnable{
         {
             player.update();
             ball.update();
-            if(brickPlacer == null)
-                this.brickPlacer = new BrickPlacer(this,this.ball,screenSize, "map3");
-            else
-                brickPlacer.update();
+            brickPlacer.update();
             checkCollision();
 
 
