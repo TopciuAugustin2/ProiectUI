@@ -3,6 +3,8 @@ package Classes;
 import Bricks.*;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,6 +31,12 @@ public class GamePanel extends JPanel implements Runnable{
     Player player;
     Ball ball;
     BrickPlacer brickPlacer;
+
+    //sound
+
+    Sound sound = new Sound();
+
+
 
     public  UI ui = new UI(this);
 
@@ -67,11 +75,12 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
-
+        playMusic(1);
     }
 
     public void setupGame() {
         gameState = titleState;
+
     }
 
     public void restart() {
@@ -190,16 +199,19 @@ public class GamePanel extends JPanel implements Runnable{
        //
        if(ball.getRect().intersects(leftWall.getRect()))
        {
+           playSE(0);
            ball.setXDir(ball.speed);
        }
        //
        if(ball.getRect().intersects(rightWall.getRect()))
        {
+           playSE(0);
            ball.setXDir(-ball.speed);
        }
        //
        if(ball.getRect().intersects(topWall.getRect()))
        {
+           playSE(0);
            ball.setYDir(ball.speed);
        }
 
@@ -245,31 +257,31 @@ public class GamePanel extends JPanel implements Runnable{
             int fourth = paddleLPos + 29*4;
 
             if (ballLPos < first) {
-
+                playSE(0);
                 ball.setXDir(-5);
                 ball.setYDir(-5);
             }
 
             if (ballLPos >= first && ballLPos < second) {
-
+                playSE(0);
                 ball.setXDir(-5);
                 ball.setYDir(-1 * ball.getYDir());
             }
 
             if (ballLPos >= second && ballLPos < third) {
-
+                playSE(0);
                 ball.setXDir(0);
                 ball.setYDir(-5);
             }
 
             if (ballLPos >= third && ballLPos < fourth) {
-
+                playSE(0);
                 ball.setXDir(5);
                 ball.setYDir(-1 * ball.getYDir());
             }
 
             if (ballLPos > fourth) {
-
+                playSE(0);
                 ball.setXDir(5);
                 ball.setYDir(-5);
             }
@@ -306,6 +318,7 @@ public class GamePanel extends JPanel implements Runnable{
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
                                 System.out.println("dmg"+ball.dmg);
                             }
+                            playSE(0);
                             ball.setXDir(-5);
                         } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
                             if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
@@ -314,6 +327,7 @@ public class GamePanel extends JPanel implements Runnable{
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
                                 System.out.println("dmg"+ball.dmg);
                             }
+                            playSE(0);
                             ball.setXDir(5);
                         }
 
@@ -324,6 +338,7 @@ public class GamePanel extends JPanel implements Runnable{
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
                                 System.out.println("dmg"+ball.dmg);
                             }
+                            playSE(0);
                             ball.setYDir(5);
                         } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
                             if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
@@ -332,7 +347,7 @@ public class GamePanel extends JPanel implements Runnable{
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
                                 System.out.println("dmg"+ball.dmg);
                             }
-
+                            playSE(0);
                             ball.setYDir(-5);
                         }
                         if(brickPlacer.hartaBricksObiecte[i][j].hp_basic != brickPlacer.hartaBricksObiecte[i][j].hp  + ball.dmg)
@@ -353,5 +368,22 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
         }
+    }
+
+
+    public void playMusic(int i)
+    {
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic()
+    {
+        sound.stop();
+    }
+    public void playSE(int i)
+    {
+        sound.setFile(i);
+        sound.play();
     }
 }
