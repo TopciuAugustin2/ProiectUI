@@ -10,7 +10,7 @@ public class Sound {
 
     public Sound()
     {
-        soundURL[0] = getClass().getResource("/Classes/boing.wav");
+        soundURL[0] = getClass().getResource("/Classes/boing1.wav");
         soundURL[1] = getClass().getResource("/Classes/back.wav");
     }
 
