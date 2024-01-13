@@ -230,8 +230,8 @@ public class GamePanel extends JPanel implements Runnable{
 //            System.out.println("p width: "+player.getRect().getWidth());
 //            System.out.println("p1 height: "+player.skin.getHeight());
 //            System.out.println("p1 width: "+player.skin.getWidth());
-            System.out.println("min x"+player.getRect().getMinX());
-            System.out.println("max x"+player.getRect().getMaxX());
+            //System.out.println("min x"+player.getRect().getMinX());
+            //System.out.println("max x"+player.getRect().getMaxX());
 
 
             int first = paddleLPos + 29;
@@ -275,7 +275,7 @@ public class GamePanel extends JPanel implements Runnable{
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 13; j++) {
                 if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].getRect())) {
-                    System.out.println("hit"+i +" "+j);
+                   // System.out.println("hit"+i +" "+j);
 
                     int ballLeft = (int) ball.getRect().getMinX();
                     int ballHeight = (int) ball.getRect().getHeight();

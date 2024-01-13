@@ -11,6 +11,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class BrickPlacer {
 
@@ -20,6 +21,7 @@ public class BrickPlacer {
     Dimension screensize;
     int maxWorldCol = 13;
     int maxWorldRow = 12;
+    Random random = new Random();
 
     //public int noOfBreakableBricks;
     Ball ball;
@@ -29,7 +31,9 @@ public class BrickPlacer {
         this.ball=ball;
         this.hartaBricksObiecte = new Brick[12][13];
         this.screensize = screensize;
-        loadBrickModel("/Bricks/map1.txt");
+        int randomNum = random.nextInt(1,4);
+        System.out.println(randomNum);
+        loadBrickModel("/Bricks/map"+randomNum+".txt");
 
     }
 
@@ -51,7 +55,7 @@ public class BrickPlacer {
                     String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
-                    System.out.println("a["+row+"]["+col+"] "+ num);
+                   // System.out.println("a["+row+"]["+col+"] "+ num);
                     switch (num) {
                         case 0 -> {
                             hartaBricksObiecte[row][col] = new EmptyBrick(ball);
