@@ -170,6 +170,7 @@ public class UI {
         int x = getXforCenteredText(text);
         int y = gp.screenHeight/2;
 
+        g2.setColor(Color.white);
         g2.drawString(text, x, y);
     }
 
