@@ -8,6 +8,7 @@ public class UI {
     Font arial_40, arial_80B;
     public boolean messageOn = false;
     public String message = "";
+    int messageCounter = 0;
     public boolean gameFinished = false;
     public int commandNum = 0;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -70,8 +71,6 @@ public class UI {
             drawGameOverScreen();
 
         }
-
-        //WON STATE
         if(gp.gameState == gp.wonState)
         {
             drawWonState();
@@ -139,7 +138,7 @@ public class UI {
         //MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 
-        text = "LEVEL 1";
+        text = "NEW GAME";
         x = getXforCenteredText(text);
         y = y + gp.tileSize * 2;
         g2.drawString(text, x, y);
@@ -147,28 +146,11 @@ public class UI {
             g2.drawString(">", x-gp.tileSize, y);
         }
 
-        text = "LEVEL 2";
-        x = getXforCenteredText(text);
-        y = y + gp.tileSize * 2;
-        g2.drawString(text, x, y);
-        if(commandNum == 1) {
-            g2.drawString(">", x-gp.tileSize, y);
-        }
-
-        text = "LEVEL 3";
-        x = getXforCenteredText(text);
-        y = y + gp.tileSize * 2;
-        g2.drawString(text, x, y);
-        if(commandNum == 2) {
-            g2.drawString(">", x-gp.tileSize, y);
-
-        }
-
         text = "SETTINGS";
         x = getXforCenteredText(text);
         y = y + gp.tileSize*2;
         g2.drawString(text, x, y);
-        if(commandNum == 3) {
+        if(commandNum == 1) {
             g2.drawString(">", x-gp.tileSize, y);
         }
 
@@ -176,7 +158,7 @@ public class UI {
         x = getXforCenteredText(text);
         y = y + gp.tileSize*2;
         g2.drawString(text, x, y);
-        if(commandNum == 4) {
+        if(commandNum == 2) {
             g2.drawString(">", x-gp.tileSize, y);
         }
     }

@@ -26,12 +26,12 @@ public class KeyHandler implements KeyListener {
             if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 4;
+                    gp.ui.commandNum = 2;
                 }
             }
             if(key == KeyEvent.VK_S ||  key == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
-                if(gp.ui.commandNum > 4) {
+                if(gp.ui.commandNum > 2) {
                     gp.ui.commandNum = 0;
                 }
             }
@@ -40,15 +40,9 @@ public class KeyHandler implements KeyListener {
                     gp.gameState = gp.playState;
                 }
                 if(gp.ui.commandNum == 1) {
-                    gp.gameState = gp.level2;
-                }
-                if(gp.ui.commandNum == 2) {
-                    gp.gameState = gp.level3;
-                }
-                if(gp.ui.commandNum == 3) {
                     //add later
                 }
-                if(gp.ui.commandNum == 4) {
+                if(gp.ui.commandNum == 2) {
                     System.exit(0);
                 }
             }
