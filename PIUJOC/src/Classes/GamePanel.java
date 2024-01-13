@@ -271,8 +271,8 @@ public class GamePanel extends JPanel implements Runnable{
 //            System.out.println("p width: "+player.getRect().getWidth());
 //            System.out.println("p1 height: "+player.skin.getHeight());
 //            System.out.println("p1 width: "+player.skin.getWidth());
-            //System.out.println("min x"+player.getRect().getMinX());
-            //System.out.println("max x"+player.getRect().getMaxX());
+            System.out.println("min x"+player.getRect().getMinX());
+            System.out.println("max x"+player.getRect().getMaxX());
 
 
             int first = paddleLPos + 29;
