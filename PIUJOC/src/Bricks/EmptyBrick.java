@@ -30,18 +30,15 @@ public class EmptyBrick extends Brick {
             //System.out.println("hit");
             //getHit();
         }
-        //System.out.println("no hit");
 
     }
     @Override
     public void getHit() {
 
-
         if(hp<=0)
         {
             Destroy();
         }
-
     }
     @Override
     public void draw(Graphics2D g2,int a,int b)
@@ -84,6 +81,5 @@ public class EmptyBrick extends Brick {
         {
             e.printStackTrace();
         }
-
     }
 }

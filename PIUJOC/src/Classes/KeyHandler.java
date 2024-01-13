@@ -37,12 +37,15 @@ public class KeyHandler implements KeyListener {
             }
             if(key == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0) {
+                    gp.playSE(2);
                     gp.gameState = gp.playState;
                 }
                 if(gp.ui.commandNum == 1) {
+                    gp.playSE(2);
                     //add later
                 }
                 if(gp.ui.commandNum == 2) {
+                    gp.playSE(2);
                     System.exit(0);
                 }
             }
@@ -68,13 +71,13 @@ public class KeyHandler implements KeyListener {
 
         //GAME OVER STATE
         if(gp.gameState == gp.gameOverState) {
-            if(key == KeyEvent.VK_W) {
+            if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum < 0) {
                     gp.ui.commandNum = 1;
                 }
             }
-            if(key == KeyEvent.VK_S) {
+            if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
                 if(gp.ui.commandNum > 1) {
                     gp.ui.commandNum = 0;
@@ -83,24 +86,26 @@ public class KeyHandler implements KeyListener {
             if(key == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0) {
                     //aici e retry
+                    gp.playSE(2);
                     gp.restart();
 
                     gp.gameState = gp.playState;
                 }
                 else if(gp.ui.commandNum == 1) {
+                    gp.playSE(2);
                     gp.gameState = gp.titleState;
                     gp.restart();
                 }
             }
         }
         if(gp.gameState == gp.wonState) {
-            if(key == KeyEvent.VK_W) {
+            if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum < 0) {
                     gp.ui.commandNum = 1;
                 }
             }
-            if(key == KeyEvent.VK_S) {
+            if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
                 if(gp.ui.commandNum > 1) {
                     gp.ui.commandNum = 0;
@@ -109,11 +114,13 @@ public class KeyHandler implements KeyListener {
             if(key == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0) {
                     //aici e retry
+                    gp.playSE(2);
                     gp.restart();
                     gp.gameState = gp.playState;
                 }
                 else if(gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;
+                    gp.playSE(2);
                     gp.restart();
                 }
             }

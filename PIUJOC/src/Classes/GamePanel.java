@@ -24,7 +24,6 @@ public class GamePanel extends JPanel implements Runnable{
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public KeyHandler keyH = new KeyHandler(this);
 
-
     Wall leftWall,topWall,rightWall;
 
     Thread gameThread;
@@ -33,10 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
     BrickPlacer brickPlacer;
 
     //sound
-
     Sound sound = new Sound();
-
-
 
     public  UI ui = new UI(this);
 
@@ -51,8 +47,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     //FPSJFrame frame;
     int FPS =60;
-
-    //player position
 
     public void startGameThread()
     {
@@ -75,7 +69,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
-        playMusic(1);
     }
 
     public void setupGame() {
@@ -97,7 +90,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.leftWall=new Wall(0,0,30,(int)screenSize.getHeight());
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
-
     }
 
     @Override
@@ -131,22 +123,17 @@ public class GamePanel extends JPanel implements Runnable{
                 drawCount=0;
                 timer=0;
             }
-
         }
     }
-
 
     public void update()
     {
         if(gameState==playState)
         {
-
             player.update();
             ball.update();
             brickPlacer.update();
             checkCollision();
-
-
         }
 
 
@@ -164,7 +151,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         else{
             try {
-                bk = ImageIO.read(getClass().getResourceAsStream("/Classes/backgroud.png"));
+                bk = ImageIO.read(getClass().getResourceAsStream("/Classes/background.jpg"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -191,7 +178,7 @@ public class GamePanel extends JPanel implements Runnable{
    private void checkCollision() {
 
         if (ball.getRect().getMaxY() > player.getRect().getMaxY()+100) {
-
+            playSE(3);
             gameState=gameOverState;
         }
 
@@ -226,7 +213,7 @@ public class GamePanel extends JPanel implements Runnable{
                }
 
                if (contor == 12*13) {
-
+                   playSE(4);
                    gameState=wonState;
                }
            }
@@ -238,17 +225,6 @@ public class GamePanel extends JPanel implements Runnable{
 
             int paddleLPos = (int) player.getRect().getMinX();
             int ballLPos = (int) ball.getRect().getMinX();
-
-
-            //System.out.println("paddle pos x:" + paddleLPos);
-            //System.out.println("ball pos x:" + ballLPos);
-
-//            System.out.println("p height: "+player.getRect().getHeight());
-//            System.out.println("p width: "+player.getRect().getWidth());
-//            System.out.println("p1 height: "+player.skin.getHeight());
-//            System.out.println("p1 width: "+player.skin.getWidth());
-            //System.out.println("min x"+player.getRect().getMinX());
-            //System.out.println("max x"+player.getRect().getMaxX());
 
 
             int first = paddleLPos + 29;
@@ -311,21 +287,20 @@ public class GamePanel extends JPanel implements Runnable{
                     if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
 
                         if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointRight)) {
-                            //System.out.println("bounce");
                             if(!brickPlacer.hartaBricksObiecte[i][j].isDestroyed())
                             {
-                                System.out.println("[i][j]:"+i+" "+j);
+                               /* System.out.println("[i][j]:"+i+" "+j);
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
-                                System.out.println("dmg"+ball.dmg);
+                                System.out.println("dmg"+ball.dmg);*/
                             }
                             playSE(0);
                             ball.setXDir(-5);
                         } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
                             if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
                             {
-                                System.out.println("[i][j]:"+i+" "+j);
+                                /*System.out.println("[i][j]:"+i+" "+j);
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
-                                System.out.println("dmg"+ball.dmg);
+                                System.out.println("dmg"+ball.dmg);*/
                             }
                             playSE(0);
                             ball.setXDir(5);
@@ -334,18 +309,18 @@ public class GamePanel extends JPanel implements Runnable{
                         if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointTop)) {
                             if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
                             {
-                                System.out.println("[i][j]:"+i+" "+j);
+                                /*System.out.println("[i][j]:"+i+" "+j);
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
-                                System.out.println("dmg"+ball.dmg);
+                                System.out.println("dmg"+ball.dmg);*/
                             }
                             playSE(0);
                             ball.setYDir(5);
                         } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
                             if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
                             {
-                                System.out.println("[i][j]:"+i+" "+j);
+                                /*System.out.println("[i][j]:"+i+" "+j);
                                 System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
-                                System.out.println("dmg"+ball.dmg);
+                                System.out.println("dmg"+ball.dmg);*/
                             }
                             playSE(0);
                             ball.setYDir(-5);

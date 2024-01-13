@@ -69,7 +69,6 @@ public class UI {
         //GAME OVER STATE
         if(gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
-
         }
         if(gp.gameState == gp.wonState)
         {

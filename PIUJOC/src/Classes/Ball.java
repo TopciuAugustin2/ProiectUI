@@ -47,39 +47,12 @@ public class Ball extends Entity {
         x += xdir;
 
         y += ydir;
-//
-//        if (x == 0) {
-//
-//            setXDir(speed);
-//        }
-//
-//        if (x == screenSize.width) {
-//
-//            setXDir(-speed);
-//        }
-//
-//        if (y == 0) {
-//
-//            setYDir(speed);
-//        }
     }
 
 
     public void draw(Graphics2D g2) {
 
-        //g2.draw(new Rectangle(0, 0, 30 * 16, 20 * 16));
-        //g2.drawImage(skin, (int) direction.getX(), (int) direction.getY(), 25, 25, null);
-        //System.out.println("x: "+ this.x);
-         //System.out.println("y: "+this.y);
-        //System.out.println(this.skin.getWidth());
-        //System.out.println(this.skin.getWidth());
-
         g2.drawImage(skin,x, y, skin.getWidth()*2, skin.getHeight()*2, null);
-
-//        System.out.println("x: "+ x);
-//        System.out.println("y: "+ y);
-//        System.out.println("skin width: "+skin.getWidth());
-//        System.out.println("skin hei: "+skin.getHeight());
 
     }
 
@@ -103,6 +76,4 @@ public class Ball extends Entity {
 
         return ydir;
     }
-
-
 }

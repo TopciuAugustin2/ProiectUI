@@ -29,11 +29,8 @@ public class BlueBrick extends Brick {
     {
         if(ball.getRect().intersects(this.solidArea))
         {
-            //System.out.println("hit");
             getHit();
         }
-        //System.out.println("no hit");
-
     }
     @Override
     public void getHit() {
@@ -44,7 +41,6 @@ public class BlueBrick extends Brick {
             {
                 Destroy();
             }
-
     }
     @Override
     public void draw(Graphics2D g2,int a,int b)
@@ -53,7 +49,6 @@ public class BlueBrick extends Brick {
         this.b=b;
         solidArea= new Rectangle(a, b,diameter,diameter/3-20);
         g2.drawImage(skin,a,b,48*3,48-20,null);
-
     }
 
     @Override
@@ -88,7 +83,5 @@ public class BlueBrick extends Brick {
             {
                 e.printStackTrace();
             }
-
     }
-
 }

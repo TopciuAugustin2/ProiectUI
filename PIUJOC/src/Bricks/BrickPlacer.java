@@ -19,8 +19,6 @@ public class BrickPlacer {
     int maxWorldCol = 13;
     int maxWorldRow = 12;
     Random random = new Random();
-
-
     Ball ball;
 
     public BrickPlacer(GamePanel gp,Ball ball,Dimension screensize) {
@@ -29,9 +27,7 @@ public class BrickPlacer {
         this.hartaBricksObiecte = new Brick[12][13];
         this.screensize = screensize;
         int randomNum = random.nextInt(1,5);
-        System.out.println("random "+randomNum);
         loadBrickModel("/Bricks/map"+randomNum+".txt");
-
     }
 
 
@@ -52,28 +48,22 @@ public class BrickPlacer {
                     String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
-                   // System.out.println("a["+row+"]["+col+"] "+ num);
                     switch (num) {
                         case 0 -> {
                             hartaBricksObiecte[row][col] = new EmptyBrick(ball);
-
                         }
                         case 1 -> {
                             hartaBricksObiecte[row][col] = new YellowBrick(ball);
-
                         }
                         case 2 -> {
                             hartaBricksObiecte[row][col] = new RedBrick(ball);
-
                         }
                         case 3 -> {
                             hartaBricksObiecte[row][col] = new BlueBrick(ball);
-
                         }
                     }
                     col++;
                 }
-
 
                 if (col == maxWorldCol) {
                     col = 0;
@@ -113,11 +103,6 @@ public class BrickPlacer {
             {
                 hartaBricksObiecte[i][j].update();
             }
-
         }
-
     }
-
-
-
 }

@@ -53,7 +53,6 @@ public class Player extends Entity {
     }
     public void draw(Graphics2D g2)
     {
-        //g2.drawImage(skin,x,y,gp.tileSize*3,gp.tileSize-20,null);
         g2.drawImage(skin, x, y,
                 skin.getWidth()*9+1, skin.getHeight()*3-20, null);
 

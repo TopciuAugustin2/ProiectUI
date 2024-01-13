@@ -12,6 +12,9 @@ public class Sound {
     {
         soundURL[0] = getClass().getResource("/Classes/boing1.wav");
         soundURL[1] = getClass().getResource("/Classes/back.wav");
+        soundURL[2] = getClass().getResource("/Classes/interface.wav");
+        soundURL[3] = getClass().getResource("/Classes/lose.wav");
+        soundURL[4] = getClass().getResource("/Classes/win.wav");
     }
 
     public void setFile(int i)
