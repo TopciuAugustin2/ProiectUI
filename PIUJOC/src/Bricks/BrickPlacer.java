@@ -23,7 +23,6 @@ public class BrickPlacer {
     int maxWorldRow = 12;
     Random random = new Random();
 
-    //public int noOfBreakableBricks;
     Ball ball;
 
     public BrickPlacer(GamePanel gp,Ball ball,Dimension screensize) {
@@ -31,9 +30,9 @@ public class BrickPlacer {
         this.ball=ball;
         this.hartaBricksObiecte = new Brick[12][13];
         this.screensize = screensize;
-        int randomNum = random.nextInt(1,4);
-        System.out.println(randomNum);
-        loadBrickModel("/Bricks/map"+randomNum+".txt");
+        int randomNum = random.nextInt(1,5);
+        //System.out.println("random "+randomNum);
+        loadBrickModel("/Bricks/map"+4+".txt");
 
     }
 

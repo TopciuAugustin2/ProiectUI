@@ -9,14 +9,18 @@ import java.io.IOException;
 
 public class RedBrick extends Brick {
 
+
     Ball ball;
     Rectangle solidArea;
     int a;
     int b;
+
+
     public RedBrick(Ball Ball)
     {
         this.ball=Ball;
-        this.hp=4;
+        this.hp=3;
+        this.hp_basic=hp;
         this.diameter=48*3;
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
         getBrickSkinImage();
@@ -24,7 +28,7 @@ public class RedBrick extends Brick {
     }
     public void update()
     {
-        if(ball.getRect().intersects(this.solidArea))
+        if(ball.getRect().intersects(this.getRect()))
         {
             getHit();
         }
@@ -34,7 +38,7 @@ public class RedBrick extends Brick {
 
         this.hp-=ball.dmg;
 
-        if(hp<=0)
+        if(hp==0)
         {
             Destroy();
         }
@@ -50,12 +54,17 @@ public class RedBrick extends Brick {
 
     }
 
+    @Override
+    public Rectangle getRect() {
+        return new Rectangle(a,b,48*3,48-20);
+    }
 
 
     @Override
     public void Destroy() {
 
-        this.skin=null;
+        EmptyBrick brick = new EmptyBrick(this.ball);
+        this.skin=brick.skin;
     }
 
     @Override
@@ -79,9 +88,5 @@ public class RedBrick extends Brick {
 
         destroyed = val;
     }
-    @Override
-    public Rectangle getRect() {
 
-        return new Rectangle(x, y, 48*3,48-20);
-    }
 }

@@ -14,8 +14,9 @@ import java.awt.image.BufferedImage;
     public BufferedImage skin;
     public int diameter;
     public boolean destroyed;
+    public  int hp_basic;
 
-     protected void setX(int x) {
+    void setX(int x) {
 
          this.x = x;
      }

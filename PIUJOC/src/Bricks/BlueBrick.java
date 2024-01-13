@@ -14,11 +14,13 @@ public class BlueBrick extends Brick {
     Rectangle solidArea;
     int a;
     int b;
+
     public BlueBrick( Ball Ball)
     {
         this.destroyed=false;
         this.ball=Ball;
         this.hp=1;
+        this.hp_basic=hp;
         this.diameter=48*3;
         this.solidArea=new Rectangle(300, 300,diameter,diameter/3-20);
         getBrickSkinImage();
@@ -38,7 +40,7 @@ public class BlueBrick extends Brick {
 
             this.hp-=ball.dmg;
 
-            if(hp<=0)
+            if(hp==0)
             {
                 Destroy();
             }
@@ -73,7 +75,8 @@ public class BlueBrick extends Brick {
     @Override
     public void Destroy() {
 
-        this.skin=null;
+        EmptyBrick brick = new EmptyBrick(this.ball);
+        this.skin=brick.skin;
     }
 
     @Override

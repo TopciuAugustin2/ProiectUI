@@ -14,10 +14,12 @@ public class YellowBrick extends Brick {
     Rectangle solidArea;
     int a;
     int b;
+
     public YellowBrick(Ball Ball)
     {
         this.ball=Ball;
-        this.hp=3;
+        this.hp=2;
+        this.hp_basic=hp;
         this.diameter=48*3;
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
         getBrickSkinImage();
@@ -25,7 +27,7 @@ public class YellowBrick extends Brick {
     }
     public void update()
     {
-        if(ball.getRect().intersects(this.solidArea))
+        if(ball.getRect().intersects(this.getRect()))
         {
             getHit();
         }
@@ -35,7 +37,7 @@ public class YellowBrick extends Brick {
 
         this.hp-=ball.dmg;
 
-        if(hp<=0)
+        if(this.hp<=0)
         {
             Destroy();
         }
@@ -47,8 +49,7 @@ public class YellowBrick extends Brick {
         this.a=a;
         this.b=b;
         solidArea= new Rectangle(a, b,diameter,diameter/3-20);
-        //g2.setColor(Color.RED);
-        //g2.fillRect(solidArea.x, solidArea.y, diameter,diameter/3-20);
+
         g2.drawImage(skin,a,b,48*3,48-20,null);
 
     }
@@ -62,7 +63,8 @@ public class YellowBrick extends Brick {
     @Override
     public void Destroy() {
 
-        this.skin=null;
+        EmptyBrick brick = new EmptyBrick(this.ball);
+        this.skin=brick.skin;
     }
 
     @Override

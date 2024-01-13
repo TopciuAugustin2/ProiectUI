@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(JFrame Window)
     {
         this.window=Window;
-
+        RandomMatrixFileWriter.GenerateMatrix();
         this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -67,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
 
+
     }
 
     public void setupGame() {
@@ -75,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void restart() {
         player.resetState();
+        RandomMatrixFileWriter.GenerateMatrix();
         this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -277,35 +279,73 @@ public class GamePanel extends JPanel implements Runnable{
                 if ((ball.getRect()).intersects(brickPlacer.hartaBricksObiecte[i][j].getRect())) {
                    // System.out.println("hit"+i +" "+j);
 
+                    // top stanga
                     int ballLeft = (int) ball.getRect().getMinX();
                     int ballHeight = (int) ball.getRect().getHeight();
                     int ballWidth = (int) ball.getRect().getWidth();
                     int ballTop = (int) ball.getRect().getMinY();
 
-                    var pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
-                    var pointLeft = new Point(ballLeft - 1, ballTop);
-                    var pointTop = new Point(ballLeft, ballTop - 1);
-                    var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
+
+                    var pointRight = new Point(ballLeft + ballWidth + 2, ballTop);
+                    var pointLeft = new Point(ballLeft - 2, ballTop);
+                    var pointTop = new Point(ballLeft, ballTop - 2);
+                    var pointBottom = new Point(ballLeft, ballTop + ballHeight + 2);
+
+
 
                     if (!brickPlacer.hartaBricksObiecte[i][j].isDestroyed()) {
 
                         if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointRight)) {
-
+                            //System.out.println("bounce");
+                            if(!brickPlacer.hartaBricksObiecte[i][j].isDestroyed())
+                            {
+                                System.out.println("[i][j]:"+i+" "+j);
+                                System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
+                                System.out.println("dmg"+ball.dmg);
+                            }
                             ball.setXDir(-5);
                         } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointLeft)) {
-
+                            if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
+                            {
+                                System.out.println("[i][j]:"+i+" "+j);
+                                System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
+                                System.out.println("dmg"+ball.dmg);
+                            }
                             ball.setXDir(5);
                         }
 
                         if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointTop)) {
-
+                            if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
+                            {
+                                System.out.println("[i][j]:"+i+" "+j);
+                                System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
+                                System.out.println("dmg"+ball.dmg);
+                            }
                             ball.setYDir(5);
                         } else if (brickPlacer.hartaBricksObiecte[i][j].getRect().contains(pointBottom)) {
+                            if(brickPlacer.hartaBricksObiecte[i][j].isDestroyed()==false )
+                            {
+                                System.out.println("[i][j]:"+i+" "+j);
+                                System.out.println("viata"+brickPlacer.hartaBricksObiecte[i][j].hp);
+                                System.out.println("dmg"+ball.dmg);
+                            }
 
                             ball.setYDir(-5);
                         }
+                        if(brickPlacer.hartaBricksObiecte[i][j].hp_basic != brickPlacer.hartaBricksObiecte[i][j].hp  + ball.dmg)
+                        {
+                            brickPlacer.hartaBricksObiecte[i][j].hp+=1;
+                            brickPlacer.hartaBricksObiecte[i][j].hp_basic-=1;
 
-                        brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
+                        }
+                        else
+                        {
+                            brickPlacer.hartaBricksObiecte[i][j].hp_basic-=1;
+                        }
+                        if( brickPlacer.hartaBricksObiecte[i][j].hp==0) {
+
+                            brickPlacer.hartaBricksObiecte[i][j].setDestroyed(true);
+                        }
                     }
                 }
             }
