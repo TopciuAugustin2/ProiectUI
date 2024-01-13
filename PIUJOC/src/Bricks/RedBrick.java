@@ -20,7 +20,7 @@ public class RedBrick extends Brick {
         this.diameter=48*3;
         this.solidArea= new Rectangle(500, 500,diameter,diameter/3-20);
         getBrickSkinImage();
-        
+        this.destroyed=false;
     }
     public void update()
     {

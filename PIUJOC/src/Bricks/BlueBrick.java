@@ -22,7 +22,6 @@ public class BlueBrick extends Brick {
         this.diameter=48*3;
         this.solidArea=new Rectangle(300, 300,diameter,diameter/3-20);
         getBrickSkinImage();
-
     }
     public void update()
     {
