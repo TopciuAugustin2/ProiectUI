@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int gameOverState = 3;
     public final int wonState = 4;
 
+
     //FPSJFrame frame;
     int FPS =60;
 
@@ -54,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(JFrame Window)
     {
         this.window=Window;
-        RandomMatrixFileWriter.GenerateMatrix();
+
         this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -67,7 +68,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.topWall=new Wall(0,0,(int)screenSize.getWidth(),30);
         this.brickPlacer = new BrickPlacer(this,this.ball,screenSize);
 
-
     }
 
     public void setupGame() {
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void restart() {
         player.resetState();
-        RandomMatrixFileWriter.GenerateMatrix();
+
         this.setPreferredSize(new Dimension((int)screenSize.getWidth(),(int)screenSize.getHeight()));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -131,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable{
     {
         if(gameState==playState)
         {
+
             player.update();
             ball.update();
             brickPlacer.update();
@@ -138,6 +139,8 @@ public class GamePanel extends JPanel implements Runnable{
 
 
         }
+
+
     }
     public void paintComponent(Graphics g)
     {

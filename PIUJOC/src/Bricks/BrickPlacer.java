@@ -3,9 +3,6 @@ package Bricks;
 import Classes.Ball;
 import Classes.GamePanel;
 import Parents.Brick;
-import Bricks.BlueBrick;
-import Bricks.YellowBrick;
-import Bricks.RedBrick;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -23,6 +20,7 @@ public class BrickPlacer {
     int maxWorldRow = 12;
     Random random = new Random();
 
+
     Ball ball;
 
     public BrickPlacer(GamePanel gp,Ball ball,Dimension screensize) {
@@ -31,8 +29,8 @@ public class BrickPlacer {
         this.hartaBricksObiecte = new Brick[12][13];
         this.screensize = screensize;
         int randomNum = random.nextInt(1,5);
-        //System.out.println("random "+randomNum);
-        loadBrickModel("/Bricks/map"+4+".txt");
+        System.out.println("random "+randomNum);
+        loadBrickModel("/Bricks/map"+randomNum+".txt");
 
     }
 
